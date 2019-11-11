@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tables"
+    android:background="@drawable/border_black_square">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/textView_label_Tables"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIST THE TABLE"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/editTextEnterNumber_Tables"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Your Number Here..."
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/textView_label_Tables"
+            android:inputType="number"
+            android:background="@drawable/border_black_view"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/editTextEnterNumber_MultiplyUpto"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Multiply upto ...."
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/editTextEnterNumber_Tables"
+            android:inputType="number"
+            android:background="@drawable/border_black_view"
+            android:padding="10dp"/>
+
+        <Button
+            android:id="@+id/btnListTables"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="List Tables"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextEnterNumber_MultiplyUpto"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_border"
+            android:textColor="@android:color/white"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"/>
+
+        <TextView
+            android:id="@+id/textView_result_Tables"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            tools:text="RESULT"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:layout_below="@id/btnListTables"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:background="@drawable/border_black_square"
+            android:visibility="invisible"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="insideInset"
+            android:scrollbarThumbVertical="@android:color/black"
+            android:fadeScrollbars="false"/>
+
+        <Button
+            android:id="@+id/btnResetTables"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/textView_result_Tables"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_border"
+            android:textColor="@android:color/white"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
