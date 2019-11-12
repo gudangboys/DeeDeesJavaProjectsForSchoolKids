@@ -18,8 +18,9 @@ import java.util.List;
 
 public class FindFactorsOfNumber extends AppCompatActivity {
     private EditText editTextUserInput;
-    private Button btnCalculate, btnReset;
+    private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
+    private String codeFindFactors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,13 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewResult.setVisibility(View.VISIBLE);
+
                 if (editTextUserInput.getText().toString().isEmpty()) {
                     Toast.makeText(FindFactorsOfNumber.this, "Enter Number First", Toast.LENGTH_SHORT).show();
                 } else {
                     findFactors();
                     btnCalculate.setEnabled(false);
+                    textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -58,6 +60,16 @@ public class FindFactorsOfNumber extends AppCompatActivity {
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
                 btnCalculate.setEnabled(true);
+            }
+        });
+
+        btnGetCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCode = new Intent(FindFactorsOfNumber.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeFindFactors", codeFindFactors);
+                startActivity(intentCode);
+
             }
         });
 
@@ -94,6 +106,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         btnReset = findViewById(R.id.btnReset);
         textViewResult = findViewById(R.id.textView_result);
         textViewLabel = findViewById(R.id.textView_label);
+        btnGetCode = findViewById(R.id.btnGetCode);
     }
 
     @Override

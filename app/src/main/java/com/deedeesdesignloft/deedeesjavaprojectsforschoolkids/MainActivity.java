@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnFindFactorialOfNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,4 +201,15 @@ public class MainActivity extends AppCompatActivity {
         btnCitySTDCode = findViewById(R.id.btn_CitySTDCode);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+                default:
+                    break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -2,9 +2,13 @@ package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,9 +17,10 @@ import android.widget.Toast;
 public class Anagram extends AppCompatActivity {
     private EditText editTextEnterStringAnagramWord1, editTextEnterStringAnagramWord2,
             editTextWordEnteredAnagramGame;
-    private Button btnCalculateAnagram, btnResetAnagram, btnValidateAnagramGame, btnNewGameAnagramGame;
+    private Button btnCalculateAnagram, btnResetAnagram, btnValidateAnagramGame, btnNewGameAnagramGame,
+    btnGetCode;
     private TextView textViewResultAnagram, textViewWordAnagramGame;
-    private String wordToFind;
+    private String wordToFind, codeAnagram;
 
 
 
@@ -36,6 +41,10 @@ public class Anagram extends AppCompatActivity {
                     Toast.makeText(Anagram.this, "Enter Words First", Toast.LENGTH_SHORT).show();
                 } else {
                     getAnagram();
+                    btnCalculateAnagram.setEnabled(false);
+                    textViewResultAnagram.setVisibility(View.VISIBLE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -46,6 +55,8 @@ public class Anagram extends AppCompatActivity {
                 editTextEnterStringAnagramWord1.getText().clear();
                 editTextEnterStringAnagramWord2.getText().clear();
                 textViewResultAnagram.setText("");
+                btnCalculateAnagram.setEnabled(true);
+                textViewResultAnagram.setTextColor(getColor(R.color.colorBlack));
             }
         });
 
@@ -56,6 +67,10 @@ public class Anagram extends AppCompatActivity {
                     Toast.makeText(Anagram.this, "Enter your Solution First", Toast.LENGTH_SHORT).show();
                 } else {
                     validate();
+                    btnValidateAnagramGame.setEnabled(false);
+                    textViewWordAnagramGame.setVisibility(View.VISIBLE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -64,6 +79,17 @@ public class Anagram extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newGame();
+                btnValidateAnagramGame.setEnabled(true);
+            }
+        });
+
+        btnGetCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCode = new Intent(Anagram.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeAnagram", codeAnagram);
+                startActivity(intentCode);
+
             }
         });
 
@@ -104,8 +130,12 @@ public class Anagram extends AppCompatActivity {
             if (no_count == 1) {
 
                 textViewResultAnagram.setText("They are not Anagrams");
+                textViewResultAnagram.setTextColor(getColor(R.color.colorRed));
+
             } else {
                 textViewResultAnagram.setText("They are Anagrams");
+                textViewResultAnagram.setTextColor(getColor(R.color.colorGreen));
+
             }
         }
     }
@@ -124,24 +154,30 @@ public class Anagram extends AppCompatActivity {
         textViewWordAnagramGame = findViewById(R.id.textView_Word_AnagramGame);
         btnValidateAnagramGame = findViewById(R.id.btnValidate_AnagramGame);
         btnNewGameAnagramGame = findViewById(R.id.btnNewGame_AnagramGame);
+        btnGetCode = findViewById(R.id.btnGetCode);
     }
 
     private void validate(){
         String userWord = editTextWordEnteredAnagramGame.getText().toString();
 
         if (wordToFind.equals(userWord)) {
+            editTextWordEnteredAnagramGame.setTextColor(getColor(R.color.colorGreen));
             Toast.makeText(this, "Congratulations! You found the Word! " + wordToFind, Toast.LENGTH_SHORT).show();
             newGame();
         } else {
             Toast.makeText(this, "Retry!", Toast.LENGTH_SHORT).show();
+            editTextWordEnteredAnagramGame.setTextColor(getColor(R.color.colorRed));
         }
     }
 
     private void newGame(){
         wordToFind = AnagramGame.randomWord();
         String wordShuffled = AnagramGame.shuffleWord(wordToFind);
+        textViewWordAnagramGame.setVisibility(View.VISIBLE);
         textViewWordAnagramGame.setText(wordShuffled);
         editTextWordEnteredAnagramGame.getText().clear();
+        editTextWordEnteredAnagramGame.setTextColor(getColor(R.color.colorBlack));
+
     }
 
     @Override

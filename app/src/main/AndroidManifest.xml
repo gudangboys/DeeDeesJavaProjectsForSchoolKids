@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.deedeesdesignloft.deedeesjavaprojectsforschoolkids">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/main_icon"
@@ -9,7 +11,9 @@
         android:roundIcon="@mipmap/main_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VowelConsonantsSpaces"/>
+        <activity android:name=".ActivityCodeCommon"></activity>
+        <activity android:name=".IntroActivity" />
+        <activity android:name=".VowelConsonantsSpaces" />
         <activity android:name=".Tables" />
         <activity android:name=".SumOfDigits" />
         <activity android:name=".SplashScreenActivity">
@@ -35,12 +39,15 @@
         <activity android:name=".Abbreviate" />
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="http"
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
                     android:host="deedeesdesignloft.com"
-                    android:pathPrefix="/deedeesjavaprojectsforschoolkids"/>
+                    android:pathPrefix="/deedeesjavaprojectsforschoolkids"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
     </application>

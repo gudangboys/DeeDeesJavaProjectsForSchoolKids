@@ -2,10 +2,12 @@ package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,6 +41,10 @@ public class EachWordNewLine extends AppCompatActivity {
                     Toast.makeText(EachWordNewLine.this, "Enter Number First", Toast.LENGTH_SHORT).show();
                 } else {
                     getEachWordNewLine();
+                    btnCalculate.setEnabled(false);
+                    textViewResult.setVisibility(View.VISIBLE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -48,6 +54,8 @@ public class EachWordNewLine extends AppCompatActivity {
             public void onClick(View v) {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
+                textViewResult.setVisibility(View.INVISIBLE);
+                btnCalculate.setEnabled(true);
             }
         });
 
@@ -59,7 +67,7 @@ public class EachWordNewLine extends AppCompatActivity {
 
         String sentence = userEachWordNewLine.replace(" ", System.lineSeparator());
 
-        textViewResult.setText(sentence);
+        textViewResult.setText("Printed every word in a new line for you:" + "\n" + "\n" + sentence);
 
         //OR
 

@@ -2,9 +2,11 @@ package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,9 +16,8 @@ import java.util.ArrayList;
 
 public class CitySTDCode extends AppCompatActivity {
     private EditText editTextUserAddCity, editTextUserAddSTD, editTextSearchCity;
-    private Button btnAddData, btnSearchCity, btnResetCitySTD, btnListAllCities;
+    private Button btnAddData, btnSearchCity, btnResetCitySTD, btnListAllCities, btnResetListCity;
     private TextView textViewResultCitySTD, textViewCityListAll;
-    int n;
     ArrayList<String> city = new ArrayList<>();
     ArrayList<String> stdCode = new ArrayList<>();
     //String city[] = new String[n];
@@ -39,11 +40,15 @@ public class CitySTDCode extends AppCompatActivity {
                         editTextUserAddSTD.getText().toString().isEmpty()){
                     Toast.makeText(CitySTDCode.this, "Enter All Details", Toast.LENGTH_SHORT).show();
                     editTextUserAddCity.requestFocus();
+
                 } else {
                     addCity();
                     editTextUserAddCity.getText().clear();
                     editTextUserAddSTD.getText().clear();
                     editTextUserAddCity.requestFocus();
+
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -52,14 +57,10 @@ public class CitySTDCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 searchCity();
-                editTextSearchCity.getText().clear();
-            }
-        });
-
-        btnListAllCities.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listAllCity();
+                //editTextSearchCity.getText().clear();
+                textViewResultCitySTD.setVisibility(View.VISIBLE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
 
@@ -67,12 +68,31 @@ public class CitySTDCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editTextSearchCity.getText().clear();
-                editTextSearchCity.getText().clear();
-                editTextSearchCity.getText().clear();
                 textViewResultCitySTD.setText("");
-                textViewCityListAll.setText("");
+
             }
         });
+
+        btnListAllCities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listAllCity();
+                textViewCityListAll.setVisibility(View.VISIBLE);
+                btnListAllCities.setEnabled(false);
+            }
+        });
+
+        btnResetListCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewCityListAll.setText("");
+                btnListAllCities.setEnabled(true);
+            }
+        });
+
+
+
+
 
     }
 
@@ -127,6 +147,7 @@ public class CitySTDCode extends AppCompatActivity {
         textViewResultCitySTD = findViewById(R.id.textView_result_CitySTDCode);
         textViewCityListAll = findViewById(R.id.textView_CitySTD_ListAll);
         btnListAllCities = findViewById(R.id.btnListCity);
+        btnResetListCity = findViewById(R.id.btnResetListSTDCityCode);
     }
 
     @Override

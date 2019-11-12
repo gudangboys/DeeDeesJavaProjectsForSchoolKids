@@ -18,6 +18,60 @@
             android:padding="30dp">
 
             <Button
+                android:id="@+id/btn_Abbreviate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abbreviate"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/btn_Anagram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_Abbreviate"
+                android:text="Anagram"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/btn_Automorphic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_Anagram"
+                android:text="Automorphic"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/btn_CitySTDCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_Automorphic"
+                android:text="Find the STD Code of City"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/btn_EachWordNewLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_CitySTDCode"
+                android:text="Print Each Word in a New Line"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/white"/>
+
+            <Button
                 android:id="@+id/btn_Factorial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -25,7 +79,8 @@
                 android:text="Find Factorial of a Number"
                 android:textSize="18sp"
                 android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:layout_below="@id/btn_EachWordNewLine"/>
 
             <Button
                 android:id="@+id/btn_Factors"
@@ -39,66 +94,11 @@
                 android:textColor="@android:color/white"/>
 
             <Button
-                android:id="@+id/btn_Tables"
+                android:id="@+id/btn_LongestWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_Factors"
-                android:text="Tables"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_PrimeOrComposite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Tables"
-                android:text="Prime Or Composite"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_PerfectNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_PrimeOrComposite"
-                android:text="Perfect Number"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_SumOfDigits"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_PerfectNumber"
-                android:text="Find Sum Of Digits"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_Palindrome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_SumOfDigits"
-                android:text="Palindrome"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_Automorphic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Palindrome"
-                android:text="Automorphic"
+                android:text="Find the Longest Word"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_border"
@@ -108,7 +108,7 @@
                 android:id="@+id/btn_Niven"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Automorphic"
+                android:layout_below="@id/btn_LongestWord"
                 android:text="Niven"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
@@ -116,22 +116,22 @@
                 android:textColor="@android:color/white"/>
 
             <Button
-                android:id="@+id/btn_VowelConsonant"
+                android:id="@+id/btn_Palindrome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_Niven"
-                android:text="Vowels - Consonants _ spaces"
+                android:text="Palindrome"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_border"
                 android:textColor="@android:color/white"/>
 
             <Button
-                android:id="@+id/btn_EachWordNewLine"
+                android:id="@+id/btn_PerfectNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_VowelConsonant"
-                android:text="Print Each Word in a New Line"
+                android:layout_below="@id/btn_Palindrome"
+                android:text="Perfect Number"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_border"
@@ -141,7 +141,7 @@
                 android:id="@+id/btn_PigLatin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_EachWordNewLine"
+                android:layout_below="@id/btn_PerfectNumber"
                 android:text="Convert to Pig Latin"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
@@ -149,33 +149,11 @@
                 android:textColor="@android:color/white"/>
 
             <Button
-                android:id="@+id/btn_Anagram"
+                android:id="@+id/btn_PrimeOrComposite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_PigLatin"
-                android:text="Anagram"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_Abbreviate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Anagram"
-                android:text="Abbreviate"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_LongestWord"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Abbreviate"
-                android:text="Find the Longest Word"
+                android:text="Prime Or Composite"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_border"
@@ -185,7 +163,7 @@
                 android:id="@+id/btn_ShortestWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_LongestWord"
+                android:layout_below="@id/btn_PrimeOrComposite"
                 android:text="Find the Shortest Word"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
@@ -193,16 +171,37 @@
                 android:textColor="@android:color/white"/>
 
             <Button
-                android:id="@+id/btn_CitySTDCode"
+                android:id="@+id/btn_SumOfDigits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_LongestWord"
-                android:text="Find the STD Code of City"
+                android:layout_below="@id/btn_ShortestWord"
+                android:text="Find Sum Of Digits"
                 android:textSize="18sp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_border"
                 android:textColor="@android:color/white"/>
 
+            <Button
+                android:id="@+id/btn_Tables"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_SumOfDigits"
+                android:text="Tables"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/btn_VowelConsonant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_Tables"
+                android:text="Vowels - Consonants - Spaces"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_border"
+                android:textColor="@android:color/white"/>
 
         </RelativeLayout>
 
