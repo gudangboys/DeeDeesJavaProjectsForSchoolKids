@@ -10,7 +10,7 @@
         android:radius="6dp">
     </corners>
 
-    <solid android:color="@color/colorPrimaryDark">
+    <solid android:color="@color/colorThemeLight">
 
     </solid>
 

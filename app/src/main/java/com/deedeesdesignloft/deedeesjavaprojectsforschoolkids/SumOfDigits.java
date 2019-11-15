@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,8 +16,9 @@ import android.widget.Toast;
 
 public class SumOfDigits extends AppCompatActivity {
     private EditText editTextUserInput;
-    private Button btnCalculate, btnReset;
+    private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
+    private String codeSumOfDigits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class SumOfDigits extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         Intent intent = getIntent();
 
@@ -40,7 +44,7 @@ public class SumOfDigits extends AppCompatActivity {
                     Toast.makeText(SumOfDigits.this, "Enter Number First", Toast.LENGTH_SHORT).show();
                 } else {
                     sumOfDigits();
-                    btnCalculate.setEnabled(false);
+                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -54,7 +58,16 @@ public class SumOfDigits extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                btnCalculate.setEnabled(true);
+                //btnCalculate.setEnabled(true);
+            }
+        });
+
+        btnGetCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCode = new Intent(SumOfDigits.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeSumOfDigits", codeSumOfDigits);
+                startActivity(intentCode);
             }
         });
     }
@@ -72,7 +85,7 @@ public class SumOfDigits extends AppCompatActivity {
 
         }
 
-        textViewResult.setText("Sum of the digits of your number is " + "\n" + "\n" + totalSum);
+        textViewResult.setText("Sum of the digits of your number is: " + "\n" + "\n" + totalSum);
     }
 
     private void initViews(){
@@ -81,6 +94,7 @@ public class SumOfDigits extends AppCompatActivity {
         btnReset = findViewById(R.id.btnReset);
         textViewResult = findViewById(R.id.textView_result);
         textViewLabel = findViewById(R.id.textView_label);
+        btnGetCode = findViewById(R.id.btnGetCode);
     }
 
     @Override

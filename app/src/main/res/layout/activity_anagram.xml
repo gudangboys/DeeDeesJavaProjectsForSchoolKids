@@ -17,7 +17,6 @@
                 android:id="@+id/relLayout_top_anagram"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
                 android:layout_margin="4dp"
                 android:background="@drawable/border_black">
 
@@ -25,19 +24,20 @@
                     android:id="@+id/textView_label_Anagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Check if your inputs are Anagrams"
+                    android:text="@string/check_if_your_inputs_are_anagrams"
                     android:layout_centerHorizontal="true"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp"
                     android:layout_marginTop="12dp"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black"
+                    android:layout_alignParentTop="true"/>
 
                 <EditText
                     android:id="@+id/editTextEnterString_Anagram_word1"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Your String Here..."
+                    android:hint="@string/enter_your_string_here"
                     android:layout_centerHorizontal="true"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -50,7 +50,7 @@
                     android:id="@+id/editTextEnterString_Anagram_word2"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Your String Here..."
+                    android:hint="@string/enter_your_string_here"
                     android:layout_centerHorizontal="true"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -72,58 +72,50 @@
                     android:layout_below="@id/editTextEnterString_Anagram_word2"
                     android:background="@drawable/border_black_square"
                     android:visibility="invisible"
-                    android:padding="8dp"/>
+                    android:padding="8dp"
+                    android:gravity="center"/>
 
                 <Button
                     android:id="@+id/btn_caculateAnagram"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:text="Go"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:text="@string/go"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="8dp"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/button_border"
-                    android:textColor="@android:color/white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"/>
+                    android:textColor="@android:color/white"/>
 
                 <Button
                 android:id="@+id/btnResetAnagram"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content"
-                android:text="Reset"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="@string/reset"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="12dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_border"
-                android:textColor="@android:color/white"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"/>
+                android:textColor="@android:color/white"/>
 
                 <Button
                     android:id="@+id/btnGetCode"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:text="Get Code"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:text="@string/get_code"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="12dp"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/button_border"
-                    android:textColor="@android:color/white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"/>
-
+                    android:textColor="@android:color/white" />
             </RelativeLayout>
 
     </LinearLayout>
@@ -138,7 +130,6 @@
                 android:id="@+id/relLayout_botton_anagram"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/relLayout_top_anagram"
                 android:background="@drawable/border_black"
                 android:layout_margin="4dp">
 
@@ -146,13 +137,14 @@
                     android:id="@+id/textViewLable_AnagramGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Anagram Game"
+                    android:text="@string/anagram_game"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="24dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="8dp"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black"
+                    android:layout_alignParentTop="true"/>
 
                 <TextView
                     android:id="@+id/textView_Word_AnagramGame"
@@ -177,7 +169,7 @@
                     android:textStyle="bold"
                     android:layout_marginBottom="12dp"
                     android:layout_below="@id/textView_Word_AnagramGame"
-                    android:hint="Enter your Word...."
+                    android:hint="@string/enter_your_word"
                     android:background="@drawable/border_black_view"
                     android:padding="10dp"/>
 
@@ -185,8 +177,7 @@
                     android:id="@+id/btnValidate_AnagramGame"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Validate"
-                    android:layout_centerHorizontal="true"
+                    android:text="@string/validate"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
                     android:textSize="16sp"
@@ -194,16 +185,13 @@
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/button_border"
                     android:textColor="@android:color/white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
                     android:layout_marginStart="12dp"/>
 
                 <Button
                     android:id="@+id/btnNewGame_AnagramGame"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="New Game"
-                    android:layout_centerHorizontal="true"
+                    android:text="@string/new_game"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:textSize="16sp"
@@ -211,8 +199,6 @@
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/button_border"
                     android:textColor="@android:color/white"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
                     android:layout_marginEnd="12dp"/>
 
             </RelativeLayout>

@@ -3,6 +3,7 @@ package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
@@ -15,8 +16,9 @@ import android.widget.Toast;
 
 public class Tables extends AppCompatActivity {
     private EditText editTextEnterNumberTables, editTextmultiplyUpto;
-    private Button btnListTables, btnResetTables;
+    private Button btnListTables, btnResetTables, btnGetCode;
     private TextView textViewResultTables;
+    private String codeTables;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class Tables extends AppCompatActivity {
                 } else {
                     textViewResultTables.setVisibility(View.VISIBLE);
                     showTables();
-                    btnListTables.setEnabled(false);
+                    //btnListTables.setEnabled(false);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -51,7 +53,16 @@ public class Tables extends AppCompatActivity {
                 editTextmultiplyUpto.getText().clear();
                 textViewResultTables.setText("");
                 textViewResultTables.setVisibility(View.INVISIBLE);
-                btnListTables.setEnabled(true);
+                //btnListTables.setEnabled(true);
+            }
+        });
+
+        btnGetCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCode = new Intent(Tables.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeTables", codeTables);
+                startActivity(intentCode);
             }
         });
 
@@ -83,6 +94,7 @@ public class Tables extends AppCompatActivity {
         btnListTables = findViewById(R.id.btnListTables);
         btnResetTables = findViewById(R.id.btnResetTables);
         textViewResultTables = findViewById(R.id.textView_result_Tables);
+        btnGetCode = findViewById(R.id.btnGetCode);
     }
 
     @Override

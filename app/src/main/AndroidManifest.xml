@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/main_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityCodeCommon"></activity>
+        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".ActivityCodeCommon" />
         <activity android:name=".IntroActivity" />
         <activity android:name=".VowelConsonantsSpaces" />
         <activity android:name=".Tables" />

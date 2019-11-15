@@ -41,7 +41,7 @@ public class Anagram extends AppCompatActivity {
                     Toast.makeText(Anagram.this, "Enter Words First", Toast.LENGTH_SHORT).show();
                 } else {
                     getAnagram();
-                    btnCalculateAnagram.setEnabled(false);
+                    //btnCalculateAnagram.setEnabled(false);
                     textViewResultAnagram.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -55,7 +55,7 @@ public class Anagram extends AppCompatActivity {
                 editTextEnterStringAnagramWord1.getText().clear();
                 editTextEnterStringAnagramWord2.getText().clear();
                 textViewResultAnagram.setText("");
-                btnCalculateAnagram.setEnabled(true);
+                //btnCalculateAnagram.setEnabled(true);
                 textViewResultAnagram.setTextColor(getColor(R.color.colorBlack));
             }
         });
@@ -67,7 +67,7 @@ public class Anagram extends AppCompatActivity {
                     Toast.makeText(Anagram.this, "Enter your Solution First", Toast.LENGTH_SHORT).show();
                 } else {
                     validate();
-                    btnValidateAnagramGame.setEnabled(false);
+                    //btnValidateAnagramGame.setEnabled(false);
                     textViewWordAnagramGame.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -79,7 +79,7 @@ public class Anagram extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newGame();
-                btnValidateAnagramGame.setEnabled(true);
+                //btnValidateAnagramGame.setEnabled(true);
             }
         });
 

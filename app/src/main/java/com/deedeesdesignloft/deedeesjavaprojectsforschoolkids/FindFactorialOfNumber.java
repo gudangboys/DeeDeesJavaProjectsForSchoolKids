@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +32,9 @@ public class FindFactorialOfNumber extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
+        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+
         Intent intent = getIntent();
 
         if (intent.hasExtra("findFactorial")){
@@ -44,7 +49,7 @@ public class FindFactorialOfNumber extends AppCompatActivity {
                     Toast.makeText(FindFactorialOfNumber.this, "Enter Number First", Toast.LENGTH_SHORT).show();
                 } else {
                     findFactorial();
-                    btnCalculate.setEnabled(false);
+                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -58,7 +63,7 @@ public class FindFactorialOfNumber extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                btnCalculate.setEnabled(true);
+                //btnCalculate.setEnabled(true);
             }
         });
 
@@ -79,16 +84,15 @@ public class FindFactorialOfNumber extends AppCompatActivity {
     private void findFactorial(){
         int userNumberFindFactorial = Integer.valueOf(editTextUserInput.getText().toString());
         int factorial = 1;
-        textViewResult.setText("The Factorials of " + userNumberFindFactorial + " are:" + "\n");
+        textViewResult.setText("The Factorial of " + userNumberFindFactorial + " is:" + "\n");
         //textViewResult.setGravity(Gravity.CENTER);
 
 
 
         for (int i = 1; i <= userNumberFindFactorial; i++){
             factorial = factorial * i;
-            textViewResult.append("\n" + factorial);
-
         }
+        textViewResult.append("\n" + factorial);
 
 
     }

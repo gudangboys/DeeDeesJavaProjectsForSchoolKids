@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -27,6 +28,10 @@ public class Abbreviate extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
+
+
 
         Intent intent = getIntent();
 
@@ -76,7 +81,7 @@ public class Abbreviate extends AppCompatActivity {
     private void getAbbreviation(){
         String userSentence = editTextUserInput.getText().toString();
         String word = "", word1 = "";
-        userSentence = userSentence + "";
+        userSentence = userSentence + " ";
         int length = userSentence.length();
 
         for (int i = 0; i < length; i++){
@@ -88,7 +93,7 @@ public class Abbreviate extends AppCompatActivity {
                 word = word.trim();
                 word1 = word.toUpperCase();
                 char chh = word1.charAt(0);
-                textViewResult.setText(chh + ".");
+                textViewResult.append(chh + ".");
             }
         }
     }

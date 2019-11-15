@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,8 +16,9 @@ import android.widget.Toast;
 
 public class PigLatin extends AppCompatActivity {
     private EditText editTextUserInput;
-    private Button btnCalculate, btnReset;
+    private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
+    private String codePigLatin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class PigLatin extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
 
         Intent intent = getIntent();
 
@@ -40,7 +44,7 @@ public class PigLatin extends AppCompatActivity {
                     Toast.makeText(PigLatin.this, "Enter Number First", Toast.LENGTH_SHORT).show();
                 } else {
                     getPigLatin();
-                    btnCalculate.setEnabled(false);
+                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -54,7 +58,16 @@ public class PigLatin extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                btnCalculate.setEnabled(true);
+                //btnCalculate.setEnabled(true);
+            }
+        });
+
+        btnGetCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCode = new Intent(PigLatin.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codePigLatin", codePigLatin);
+                startActivity(intentCode);
             }
         });
     }
@@ -98,6 +111,7 @@ public class PigLatin extends AppCompatActivity {
         btnReset = findViewById(R.id.btnReset);
         textViewResult = findViewById(R.id.textView_result);
         textViewLabel = findViewById(R.id.textView_label);
+        btnGetCode = findViewById(R.id.btnGetCode);
     }
 
     @Override

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -31,6 +33,9 @@ public class FindFactorsOfNumber extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
+        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+
         Intent intent = getIntent();
 
         if (intent.hasExtra("findFactors")){
@@ -45,7 +50,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
                     Toast.makeText(FindFactorsOfNumber.this, "Enter Number First", Toast.LENGTH_SHORT).show();
                 } else {
                     findFactors();
-                    btnCalculate.setEnabled(false);
+                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -59,7 +64,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                btnCalculate.setEnabled(true);
+                //btnCalculate.setEnabled(true);
             }
         });
 
@@ -81,7 +86,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
     private void findFactors(){
         List<Integer> factors = new ArrayList<>();
         int userNumberFindFactor = Integer.valueOf(editTextUserInput.getText().toString());
-        textViewResult.setText("The Factors of " + userNumberFindFactor + " are:" + "\n");
+        textViewResult.setText("The Factors of " + userNumberFindFactor + " are:" + "\n" + "\n");
 
         for (int i = 1; i <= userNumberFindFactor; i++) {
 

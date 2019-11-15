@@ -3,6 +3,7 @@ package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +17,10 @@ import java.util.ArrayList;
 
 public class CitySTDCode extends AppCompatActivity {
     private EditText editTextUserAddCity, editTextUserAddSTD, editTextSearchCity;
-    private Button btnAddData, btnSearchCity, btnResetCitySTD, btnListAllCities, btnResetListCity;
+    private Button btnAddData, btnSearchCity, btnResetCitySTD, btnListAllCities, btnResetListCity,
+    btnGetCode;
     private TextView textViewResultCitySTD, textViewCityListAll;
+    private String codeCitySTD;
     ArrayList<String> city = new ArrayList<>();
     ArrayList<String> stdCode = new ArrayList<>();
     //String city[] = new String[n];
@@ -90,6 +93,16 @@ public class CitySTDCode extends AppCompatActivity {
             }
         });
 
+        btnGetCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCode = new Intent(CitySTDCode.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeCitySTD", codeCitySTD);
+                startActivity(intentCode);
+
+            }
+        });
+
 
 
 
@@ -148,6 +161,7 @@ public class CitySTDCode extends AppCompatActivity {
         textViewCityListAll = findViewById(R.id.textView_CitySTD_ListAll);
         btnListAllCities = findViewById(R.id.btnListCity);
         btnResetListCity = findViewById(R.id.btnResetListSTDCityCode);
+        btnGetCode = findViewById(R.id.btnGetCode);
     }
 
     @Override

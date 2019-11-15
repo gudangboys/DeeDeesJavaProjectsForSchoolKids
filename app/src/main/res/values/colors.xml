@@ -6,9 +6,11 @@
 
     <color name="colorTheme">#fe4a56</color>
 
-    <color name="colorThemeLight">#FD8C94</color>
+    <color name="colorThemeLight">#FAADB0</color>
+
 
     <color name="colorGreen">#2ea70a</color>
     <color name="colorBlack">#000000</color>
     <color name="colorRed">#fd1a04</color>
+    <color name="colorBlue">#122DCE</color>
 </resources>

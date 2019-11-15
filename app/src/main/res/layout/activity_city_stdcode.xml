@@ -10,192 +10,223 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_weight="1"
-        android:background="@drawable/border_black">
+        android:background="@drawable/border_black"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView_label_CitySTDCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
-                android:text="ENTER CITY AND SEARCH STD CODE"
+                android:text="@string/enter_city_and_search_std_code"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextUserAddCitySTDCode"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView_label_CitySTDCode"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/border_black_view"
-                android:hint="Add City Here..."
+                android:hint="@string/add_city_here"
                 android:inputType="text"
                 android:padding="10dp"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextUserAddSTD_CitySTDCode"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/editTextUserAddCitySTDCode"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/border_black_view"
-                android:hint="Add STD Code here.."
+                android:hint="@string/add_std_code_here"
                 android:inputType="number"
                 android:padding="10dp"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnAddData"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="6dp"
                 android:background="@drawable/button_border"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:text="Add Data"
+                android:text="@string/add_data"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnGetCode"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/button_border"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/get_code"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_weight="1"
-        android:background="@drawable/border_black">
+        android:background="@drawable/border_black"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <EditText
                 android:id="@+id/editTextSearchCity"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/border_black_view"
-                android:hint="Search city..."
+                android:hint="@string/search_city"
                 android:inputType="text"
-                android:padding="10dp"
-                android:layout_gravity="center_horizontal"/>
+                android:padding="10dp" />
 
             <TextView
                 android:id="@+id/textView_result_CitySTDCode"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="12dp"
+                android:background="@drawable/border_black_square"
+                android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="RESULT"
-                android:background="@drawable/border_black_square"
-                android:padding="10dp"
                 android:visibility="invisible"
-                android:layout_gravity="center_horizontal"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom"
-            android:gravity="center_horizontal">
+                tools:text="RESULT"
+                android:layout_below="@id/editTextSearchCity"/>
 
             <Button
                 android:id="@+id/btnSearchCity"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginEnd="12dp"
                 android:background="@drawable/button_border"
-                android:text="Search"
+                android:text="@string/search"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal|bottom"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnResetSTDCityCode"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginStart="12dp"
                 android:background="@drawable/button_border"
-                android:text="Reset"
+                android:text="@string/reset"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal|bottom"/>
-        </LinearLayout>
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_weight="1"
-        android:background="@drawable/border_black">
+        android:background="@drawable/border_black"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView_CitySTD_ListAll"
                 android:layout_width="250dp"
                 android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/border_black_view"
                 android:fadeScrollbars="false"
+                android:padding="4dp"
                 android:scrollbarStyle="insideInset"
                 android:scrollbarThumbVertical="@android:color/black"
                 android:scrollbars="vertical"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="12dp"
-                android:visibility="invisible"
-                android:layout_gravity="center_horizontal|top"
-                android:padding="4dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom"
-            android:gravity="center_horizontal">
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/btnListCity"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_gravity="center_horizontal|bottom"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="12dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginEnd="12dp"
                 android:background="@drawable/button_border"
-                android:text="Search"
+                android:text="@string/search"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnResetListSTDCityCode"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginStart="12dp"
                 android:background="@drawable/button_border"
-                android:text="Reset"
+                android:text="@string/reset"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal|bottom"/>
+                android:textStyle="bold" />
 
-        </LinearLayout>
+        </RelativeLayout>
+
 
     </LinearLayout>
-
 
 
 </LinearLayout>

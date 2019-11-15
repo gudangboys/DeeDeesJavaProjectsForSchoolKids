@@ -15,8 +15,9 @@ import android.widget.Toast;
 
 public class LongestWord extends AppCompatActivity {
     private EditText editTextUserInput;
-    private Button btnCalculate, btnReset;
+    private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
+    private String codeLongestWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class LongestWord extends AppCompatActivity {
                     Toast.makeText(LongestWord.this, "Enter Something First", Toast.LENGTH_SHORT).show();
                 } else {
                     getLongestWord();
-                    btnCalculate.setEnabled(false);
+                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -54,10 +55,19 @@ public class LongestWord extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                btnCalculate.setEnabled(true);
+                //btnCalculate.setEnabled(true);
             }
         });
 
+        btnGetCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCode = new Intent(LongestWord.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeLongestWord", codeLongestWord);
+                startActivity(intentCode);
+
+            }
+        });
     }
 
     private void getLongestWord(){
@@ -95,6 +105,7 @@ public class LongestWord extends AppCompatActivity {
         btnReset = findViewById(R.id.btnReset);
         textViewResult = findViewById(R.id.textView_result);
         textViewLabel = findViewById(R.id.textView_label);
+        btnGetCode = findViewById(R.id.btnGetCode);
     }
 
     @Override

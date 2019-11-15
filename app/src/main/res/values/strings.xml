@@ -1,3 +1,74 @@
 <resources>
     <string name="app_name">DeeDees Java Projects</string>
+    <string name="check_if_your_inputs_are_anagrams">Check if your inputs are Anagrams</string>
+    <string name="enter_your_string_here">Enter Your String Here...</string>
+    <string name="go">Go</string>
+    <string name="reset">Reset</string>
+    <string name="get_code">Get Code</string>
+    <string name="anagram_game">Anagram Game</string>
+    <string name="enter_your_word">Enter your Word....</string>
+    <string name="validate">Validate</string>
+    <string name="new_game">New Game</string>
+    <string name="search">Search</string>
+    <string name="input_here">Input here...</string>
+    <string name="abbreviate">Abbreviate</string>
+    <string name="anagram">Anagram</string>
+    <string name="automorphic">Automorphic</string>
+    <string name="find_the_std_code_of_city">Find the STD Code of City</string>
+    <string name="print_each_word_in_a_new_line">Print Each Word in a New Line</string>
+    <string name="find_factorial_of_a_number">Find Factorial of a Number</string>
+    <string name="find_factors_of_a_number">Find Factors of a Number</string>
+    <string name="find_the_longest_word">Find the Longest Word</string>
+    <string name="niven">Niven</string>
+    <string name="palindrome">Palindrome</string>
+    <string name="perfect_number">Perfect Number</string>
+    <string name="convert_to_pig_latin">Convert to Pig Latin</string>
+    <string name="prime_or_composite">Prime Or Composite</string>
+    <string name="find_the_shortest_word">Find the Shortest Word</string>
+    <string name="find_sum_of_digits">Find Sum Of Digits</string>
+    <string name="tables">Tables</string>
+    <string name="vowels_consonants_spaces">Vowels - Consonants - Spaces</string>
+    <string name="list_the_table">LIST THE TABLE</string>
+    <string name="enter_your_number_here">Enter Your Number Here...</string>
+    <string name="multiply_upto">Multiply upto ....</string>
+    <string name="list_tables">List Tables</string>
+
+    <string name="about_text">Hello there! Welcome to my app DeeDee\'s Java Projects for Students
+        and Beginners version 1.0!\n\nIt will help if you have a basic knowledge of Java and are
+        already familiar with basic coding to enjoy the app to the fullest.\n\nMany a times I have
+        noticed people and for that matter even when I began coding, of not being sure of where to
+        start, what challenges to solve to get a hold of the basic concept and logic and what the
+        output should look like.\n\nSo, I have listed several basic projects in a simple Android UI
+        and you are encouraged to treat the projects as challenges and solve them on your own, on
+        your preferred IDE for Java.\n\nOften, logic varies from person to person and your code and
+        logical approach may be quite different from the person next to you but the most important
+        thing here is that you find the solution as against how it was arrived at.\n\nAlbeit that
+        being said, the best coding policy is a short, good code with best performance.\n\nThis app
+        is not a tutorial but much more if you may. It encourages you to think of a possible
+        solution for the listed projects, explore available resources like your books, the internet
+        and even discuss and compare with friends to find the solution on your own. One of the best
+        resources on the internet is stackoverflow.com\n\nI have included the simple Java code of
+        the projects for your ready reference and clear understanding of the concept and make it
+        simpler for you, but remember, your code need not be the same and the pleasure of watching
+        your own code do its job is priceless!\n\nThis app will need to connect to the internet to
+        display the Java code solutions as storing them locally would have increased the size of
+        the app.\n\nThe code used in the app may have added features, you are encouraged to add the
+    same in your code on your own.\n\n\n<b>Disclaimer</b>\n\nWhile all the information in this app is presented with good
+            intentions and is accurate and true to the best of the developer\'s knowledge, is referential
+            at best and does not substitute for absolute or expert knowledge and is only intended for
+        education purposes and the users are encouraged to research further on the relevant
+        topic.\n\nAny actions of the user based on the information provided in this app
+            are solely the user\'s responsibility and the author/developer will not be liable for
+            any damage or loss arising from such actions.\nAll listed projects have been personally
+        coded by the author/developer.\nWhile all images are copyright to their
+            respective owners, they are used herein specifically for education and reference purpose,
+            and therefore, I acknowledge in good faith that, the content here meets the legal requirements
+            for fair use or fair dealing under applicable copyright laws.</string>
+    <string name="search_city">Search city...</string>
+    <string name="add_data">Add Data</string>
+    <string name="add_std_code_here">Add STD Code here..</string>
+    <string name="add_city_here">Add City Here...</string>
+    <string name="enter_city_and_search_std_code">ENTER CITY AND SEARCH STD CODE</string>
+
+
 </resources>
