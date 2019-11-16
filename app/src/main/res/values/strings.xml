@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DeeDees Java Projects</string>
     <string name="check_if_your_inputs_are_anagrams">Check if your inputs are Anagrams</string>
-    <string name="enter_your_string_here">Enter Your String Here...</string>
+    <string name="enter_your_string_here">Enter Your String Here..</string>
     <string name="go">Go</string>
     <string name="reset">Reset</string>
     <string name="get_code">Get Code</string>
@@ -10,7 +10,7 @@
     <string name="validate">Validate</string>
     <string name="new_game">New Game</string>
     <string name="search">Search</string>
-    <string name="input_here">Input here...</string>
+    <string name="input_here">Input here..</string>
     <string name="abbreviate">Abbreviate</string>
     <string name="anagram">Anagram</string>
     <string name="automorphic">Automorphic</string>
@@ -29,9 +29,18 @@
     <string name="tables">Tables</string>
     <string name="vowels_consonants_spaces">Vowels - Consonants - Spaces</string>
     <string name="list_the_table">LIST THE TABLE</string>
-    <string name="enter_your_number_here">Enter Your Number Here...</string>
-    <string name="multiply_upto">Multiply upto ....</string>
+    <string name="enter_your_number_here">Enter Your Number Here..</string>
+    <string name="multiply_upto">Multiply up to ..</string>
     <string name="list_tables">List Tables</string>
+    <string name="search_city">Search city..</string>
+    <string name="add_data">Add Data</string>
+    <string name="add_std_code_here">Add STD Code here..</string>
+    <string name="add_city_here">Add City Here..</string>
+    <string name="enter_city_and_search_std_code">ENTER CITY AND SEARCH STD CODE</string>
+    <string name="congrats_anagram">Congratulations! You found the Word!</string>
+    <string name="retry">Retry!</string>
+    <string name="input_something">Input Something First!</string>
+    <string name="congrats">Congratulations!</string>
 
     <string name="about_text">Hello there! Welcome to my app DeeDee\'s Java Projects for Students
         and Beginners version 1.0!\n\nIt will help if you have a basic knowledge of Java and are
@@ -64,11 +73,7 @@
             respective owners, they are used herein specifically for education and reference purpose,
             and therefore, I acknowledge in good faith that, the content here meets the legal requirements
             for fair use or fair dealing under applicable copyright laws.</string>
-    <string name="search_city">Search city...</string>
-    <string name="add_data">Add Data</string>
-    <string name="add_std_code_here">Add STD Code here..</string>
-    <string name="add_city_here">Add City Here...</string>
-    <string name="enter_city_and_search_std_code">ENTER CITY AND SEARCH STD CODE</string>
+
 
 
 </resources>

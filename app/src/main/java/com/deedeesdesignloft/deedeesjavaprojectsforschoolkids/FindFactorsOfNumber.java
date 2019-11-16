@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -47,11 +49,18 @@ public class FindFactorsOfNumber extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(FindFactorsOfNumber.this, "Enter Number First", Toast.LENGTH_SHORT).show();
+                    Context context = getApplicationContext();
+                    LayoutInflater inflater = getLayoutInflater();
+                    View toastRoot = inflater.inflate(R.layout.toast_layout_blue, null);
+                    Toast toast = new Toast(context);
+                    toast.setView(toastRoot);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
+                            0, 0);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.show();
                 } else {
                     findFactors();
-                    //btnCalculate.setEnabled(false);
-                    textViewResult.setVisibility(View.VISIBLE);
+
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -64,7 +73,8 @@ public class FindFactorsOfNumber extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                //btnCalculate.setEnabled(true);
+                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
+
             }
         });
 
@@ -87,6 +97,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         List<Integer> factors = new ArrayList<>();
         int userNumberFindFactor = Integer.valueOf(editTextUserInput.getText().toString());
         textViewResult.setText("The Factors of " + userNumberFindFactor + " are:" + "\n" + "\n");
+        textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
 
         for (int i = 1; i <= userNumberFindFactor; i++) {
 
@@ -101,6 +112,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         }
 
         textViewResult.append(builder.toString());
+        textViewResult.setVisibility(View.VISIBLE);
 
 
     }

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -43,13 +45,19 @@ public class Abbreviate extends AppCompatActivity {
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewResult.setVisibility(View.VISIBLE);
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(Abbreviate.this, "Enter Number First", Toast.LENGTH_SHORT).show();
+                    Context context = getApplicationContext();
+                    LayoutInflater inflater = getLayoutInflater();
+                    View toastRoot = inflater.inflate(R.layout.toast_layout_blue, null);
+                    Toast toast = new Toast(context);
+                    toast.setView(toastRoot);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
+                            0, 0);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.show();
                 } else {
                     getAbbreviation();
-                    btnCalculate.setEnabled(false);
-                    textViewResult.setVisibility(View.VISIBLE);
+
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -62,7 +70,6 @@ public class Abbreviate extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                btnCalculate.setEnabled(true);
             }
         });
 
@@ -79,6 +86,7 @@ public class Abbreviate extends AppCompatActivity {
     }
 
     private void getAbbreviation(){
+        textViewResult.setVisibility(View.VISIBLE);
         String userSentence = editTextUserInput.getText().toString();
         String word = "", word1 = "";
         userSentence = userSentence + " ";
@@ -89,11 +97,11 @@ public class Abbreviate extends AppCompatActivity {
             word = word + ch;
 
             if (ch == ' ') {
-
                 word = word.trim();
-                word1 = word.toUpperCase();
+                word1 = word;//.toUpperCase();
+                word = "";
                 char chh = word1.charAt(0);
-                textViewResult.append(chh + ".");
+                textViewResult.append(chh + "." + "\n");
             }
         }
     }

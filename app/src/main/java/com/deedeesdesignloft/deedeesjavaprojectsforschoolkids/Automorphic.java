@@ -58,6 +58,7 @@ public class Automorphic extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
+                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
                 //btnCalculate.setEnabled(true);
             }
         });
@@ -85,8 +86,10 @@ public class Automorphic extends AppCompatActivity {
         int end = sq % (int) Math.pow(10, count);
         if (userAutomorphic == end) {
             textViewResult.setText(userAutomorphic + " is an Automorphic Number");
+            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
         } else {
             textViewResult.setText(userAutomorphic + " is not an Automorphic Number");
+            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
         }
 
     }

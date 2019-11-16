@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -60,8 +62,7 @@ public class CitySTDCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 searchCity();
-                //editTextSearchCity.getText().clear();
-                textViewResultCitySTD.setVisibility(View.VISIBLE);
+
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
@@ -81,7 +82,6 @@ public class CitySTDCode extends AppCompatActivity {
             public void onClick(View v) {
                 listAllCity();
                 textViewCityListAll.setVisibility(View.VISIBLE);
-                btnListAllCities.setEnabled(false);
             }
         });
 
@@ -89,7 +89,7 @@ public class CitySTDCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 textViewCityListAll.setText("");
-                btnListAllCities.setEnabled(true);
+                textViewResultCitySTD.setTextColor(getResources().getColor(R.color.colorBlack));
             }
         });
 
@@ -127,11 +127,29 @@ public class CitySTDCode extends AppCompatActivity {
     private void searchCity(){
         String userSearchCity = editTextSearchCity.getText().toString();
 
-        for (int j = 0; j < city.size(); j++) {
-            if (userSearchCity.equalsIgnoreCase(city.get(j))){
-                textViewResultCitySTD.setText("City: " + userSearchCity + "\t STD: " + stdCode.get(j));
-            } else {
-                textViewResultCitySTD.setText("City not found!");
+        if (userSearchCity.isEmpty()) {
+
+            Context context = getApplicationContext();
+            LayoutInflater inflater = getLayoutInflater();
+            View toastRoot = inflater.inflate(R.layout.toast_layout_blue, null);
+            Toast toast = new Toast(context);
+            toast.setView(toastRoot);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
+                    0, 0);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+
+            for (int j = 0; j < city.size(); j++) {
+                if (userSearchCity.equalsIgnoreCase(city.get(j))) {
+                    textViewResultCitySTD.setVisibility(View.VISIBLE);
+                    textViewResultCitySTD.setText("City: " + userSearchCity + "\n" + "STD: " + stdCode.get(j));
+                    textViewResultCitySTD.setTextColor(getResources().getColor(R.color.colorGreen));
+                } else {
+                    textViewResultCitySTD.setVisibility(View.VISIBLE);
+                    textViewResultCitySTD.setText("City not found!");
+                    textViewResultCitySTD.setTextColor(getResources().getColor(R.color.colorRed));
+                }
             }
         }
 

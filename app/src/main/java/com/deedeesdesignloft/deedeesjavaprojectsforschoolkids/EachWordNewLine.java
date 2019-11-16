@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -42,10 +44,17 @@ public class EachWordNewLine extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(EachWordNewLine.this, "Enter Number First", Toast.LENGTH_SHORT).show();
+                    Context context = getApplicationContext();
+                    LayoutInflater inflater = getLayoutInflater();
+                    View toastRoot = inflater.inflate(R.layout.toast_layout_blue, null);
+                    Toast toast = new Toast(context);
+                    toast.setView(toastRoot);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
+                            0, 0);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.show();
                 } else {
                     getEachWordNewLine();
-                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -59,7 +68,8 @@ public class EachWordNewLine extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                //btnCalculate.setEnabled(true);
+                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
+
             }
         });
 
@@ -79,9 +89,17 @@ public class EachWordNewLine extends AppCompatActivity {
     private void getEachWordNewLine(){
         String userEachWordNewLine = editTextUserInput.getText().toString();
 
-        String sentence = userEachWordNewLine.replace(" ", System.lineSeparator());
+        if (!userEachWordNewLine.contains(" ")) {
+            textViewResult.setText("Your input is not a Sentence!");
+            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
+        } else {
 
-        textViewResult.setText("Printed every word in a new line for you:" + "\n" + "\n" + sentence);
+            String sentence = userEachWordNewLine.replace(" ", System.lineSeparator());
+            textViewResult.setText("Printed every word in a new line for you:" + "\n" + "\n" + sentence);
+            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
+        }
+
+
 
         //OR
 
