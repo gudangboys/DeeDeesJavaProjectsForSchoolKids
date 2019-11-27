@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ public class LongestWord extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
 
         Intent intent = getIntent();
 
@@ -38,7 +40,10 @@ public class LongestWord extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(LongestWord.this, "Enter Something First", Toast.LENGTH_SHORT).show();
+                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    toast.show();
                 } else {
                     getLongestWord();
                     //btnCalculate.setEnabled(false);
@@ -85,13 +90,14 @@ public class LongestWord extends AppCompatActivity {
             if (ch==' ') {
                 int len = word.length();
 
-                if (len > p) {
+                if (len < p) {
+                    word = "";
+
+                } else {
                     p = len; max = word;
                     word = " ";
                 }
             }
-
-
         }
 
         textViewResult.setText("\"" + max + "\"" + " is the longest word.");

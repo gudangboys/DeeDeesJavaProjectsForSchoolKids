@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
@@ -29,13 +30,18 @@ public class Tables extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+
         btnListTables.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextEnterNumberTables.getText().toString().isEmpty() ||
                 editTextmultiplyUpto.getText().toString().isEmpty()) {
                     editTextEnterNumberTables.requestFocus();
-                    Toast.makeText(Tables.this, "Enter Number First", Toast.LENGTH_SHORT).show();
+                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    toast.show();
                 } else {
                     textViewResultTables.setVisibility(View.VISIBLE);
                     showTables();
@@ -71,7 +77,8 @@ public class Tables extends AppCompatActivity {
     private void showTables(){
         int userNumberTables = Integer.parseInt(editTextEnterNumberTables.getText().toString());
         int userMultiplyUpto = Integer.parseInt(editTextmultiplyUpto.getText().toString());
-        textViewResultTables.setText("Here are the " + userNumberTables + " times tables for you" + "\n");
+        textViewResultTables.setText("Here are the tables for " + userNumberTables + " for you multiplied " +
+                 userMultiplyUpto + " times" + "\n");
 
 
         //List<Integer> tableResult = new ArrayList<>();

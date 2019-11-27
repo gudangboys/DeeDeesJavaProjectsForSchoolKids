@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ public class Niven extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
 
         editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -41,7 +43,10 @@ public class Niven extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(Niven.this, "Enter Number First", Toast.LENGTH_SHORT).show();
+                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    toast.show();
                 } else {
                     getNiven();
                     //btnCalculate.setEnabled(false);

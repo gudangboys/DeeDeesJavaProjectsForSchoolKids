@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
 
         btnFindFactorialOfNumber.setOnClickListener(new View.OnClickListener() {
             @Override

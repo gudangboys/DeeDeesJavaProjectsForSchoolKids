@@ -24,7 +24,7 @@
     <string name="perfect_number">Perfect Number</string>
     <string name="convert_to_pig_latin">Convert to Pig Latin</string>
     <string name="prime_or_composite">Prime Or Composite</string>
-    <string name="find_the_shortest_word">Find the Shortest Word</string>
+    <string name="find_the_shortest_word">Find the Smallest Word</string>
     <string name="find_sum_of_digits">Find Sum Of Digits</string>
     <string name="tables">Tables</string>
     <string name="vowels_consonants_spaces">Vowels - Consonants - Spaces</string>
@@ -41,6 +41,8 @@
     <string name="retry">Retry!</string>
     <string name="input_something">Input Something First!</string>
     <string name="congrats">Congratulations!</string>
+    <string name="input_all_fields">Input All Fields</string>
+    <string name="add_data_first">Add Data First!</string>
 
     <string name="about_text">Hello there! Welcome to my app DeeDee\'s Java Projects for Students
         and Beginners version 1.0!\n\nIt will help if you have a basic knowledge of Java and are
@@ -73,7 +75,8 @@
             respective owners, they are used herein specifically for education and reference purpose,
             and therefore, I acknowledge in good faith that, the content here meets the legal requirements
             for fair use or fair dealing under applicable copyright laws.</string>
-
+    <string name="list_cities">List Cities</string>
+    <string name="data_already_exists">Data already exists</string>
 
 
 </resources>

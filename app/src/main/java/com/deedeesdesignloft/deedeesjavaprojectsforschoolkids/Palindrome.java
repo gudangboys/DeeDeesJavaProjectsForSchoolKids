@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -28,6 +29,8 @@ public class Palindrome extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+
         editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         Intent intent = getIntent();
@@ -40,7 +43,10 @@ public class Palindrome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(Palindrome.this, "Enter Number First", Toast.LENGTH_SHORT).show();
+                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    toast.show();
                 } else {
                     getPalindrome();
                     //btnCalculate.setEnabled(false);
@@ -57,7 +63,7 @@ public class Palindrome extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                //btnCalculate.setEnabled(true);
+                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
             }
         });
 
@@ -87,8 +93,10 @@ public class Palindrome extends AppCompatActivity {
 
         if (ori == rev){
             textViewResult.setText(ori + " is a Palindrome Number");
+            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
         } else {
             textViewResult.setText(ori + " is not a Palindrome Number");
+            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
         }
 
 

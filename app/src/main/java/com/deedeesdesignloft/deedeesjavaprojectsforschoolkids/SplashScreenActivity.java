@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         webView = new WebView(this);
-        webView.loadUrl("file:///android_asset/school_project_animation.gif");
+        webView.loadUrl("file:///android_asset/school_project_animation_yellow.gif");
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         setContentView(webView);
 
@@ -38,7 +38,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
     private class SplashLauncher extends Thread {
-        private int SLEEP_TIMER = 3;
+        private int SLEEP_TIMER = 5;
 
         public void run() {
             try {

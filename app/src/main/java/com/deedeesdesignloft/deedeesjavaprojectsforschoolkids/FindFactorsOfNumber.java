@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
@@ -34,6 +35,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
 
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
         editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -49,14 +51,9 @@ public class FindFactorsOfNumber extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Context context = getApplicationContext();
-                    LayoutInflater inflater = getLayoutInflater();
-                    View toastRoot = inflater.inflate(R.layout.toast_layout_blue, null);
-                    Toast toast = new Toast(context);
-                    toast.setView(toastRoot);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
-                            0, 0);
-                    toast.setDuration(Toast.LENGTH_SHORT);
+                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
                     toast.show();
                 } else {
                     findFactors();

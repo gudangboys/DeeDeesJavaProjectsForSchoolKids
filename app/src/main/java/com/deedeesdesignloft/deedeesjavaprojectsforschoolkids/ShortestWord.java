@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,8 @@ public class ShortestWord extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+
         Intent intent = getIntent();
 
         if (intent.hasExtra("shortestWord")){
@@ -37,7 +40,10 @@ public class ShortestWord extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(ShortestWord.this, "Enter Something First", Toast.LENGTH_SHORT).show();
+                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    toast.show();
                 } else {
                     getShortestWord();
                     textViewResult.setVisibility(View.VISIBLE);
@@ -69,11 +75,29 @@ public class ShortestWord extends AppCompatActivity {
     }
 
     private void getShortestWord(){
+
+        String userinput = editTextUserInput.getText().toString();
+        String[] words = userinput.split(" ");
+        int min;
+        int minWord = 0;
+
+        min = (words[0].length());
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].length() < min) {
+                min = words[i].length();
+                minWord = i;
+            }
+        }
+
+        textViewResult.setText("\"" + words[minWord] + "\"" + " is the shortest word.");
+
+        /*
         String userInput = editTextUserInput.getText().toString();
         String word = "", min = "";
-        int l, p = 0;
+        int p = 0;
         userInput = userInput + " ";
-        l = userInput.length();
+        int l = userInput.length();
         char ch;
 
         for (int i = 0; i < l; i++) {
@@ -83,16 +107,17 @@ public class ShortestWord extends AppCompatActivity {
             if (ch==' ') {
                 int len = word.length();
 
-                if (l > len) {
-                    l = len; min = word;
-                    word = " ";
+                if (p < len) {
+                    if (min.length() > len)
+                        p = len; min = word;
+                        word = " ";
                 }
+
             }
-
-
         }
 
-        textViewResult.setText("\"" + min + "\"" + " is the shortest word.");
+         */
+
     }
 
     private void initViews(){

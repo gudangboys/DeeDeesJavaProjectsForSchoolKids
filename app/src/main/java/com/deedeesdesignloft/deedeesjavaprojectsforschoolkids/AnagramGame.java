@@ -16,7 +16,7 @@ public class AnagramGame {
 
     public static String shuffleWord(String word) {
         if (word != null && !"".equals(word)) {
-            char a[] = word.toCharArray();
+            char[] a = word.toCharArray();
 
             for (int i = 0; i < a.length; i++) {
                 int j = RANDOM.nextInt(a.length);

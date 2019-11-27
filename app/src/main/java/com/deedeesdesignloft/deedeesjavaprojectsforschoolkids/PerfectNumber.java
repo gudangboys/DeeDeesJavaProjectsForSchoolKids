@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ public class PerfectNumber extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
 
         editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -42,7 +44,10 @@ public class PerfectNumber extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast.makeText(PerfectNumber.this, "Enter Number First", Toast.LENGTH_SHORT).show();
+                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    toast.show();
                 } else {
                     perfectNumber();
                     //btnCalculate.setEnabled(false);
@@ -59,7 +64,7 @@ public class PerfectNumber extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                //btnCalculate.setEnabled(true);
+                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
             }
         });
 
@@ -86,8 +91,10 @@ public class PerfectNumber extends AppCompatActivity {
 
         if (perfectNumberSum == userPerfectNumber){
             textViewResult.setText(userPerfectNumber + " is a Perfect Number");
+            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
         } else {
             textViewResult.setText(userPerfectNumber + " is not a Perfect Number");
+            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
         }
     }
 

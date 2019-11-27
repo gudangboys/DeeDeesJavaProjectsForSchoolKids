@@ -8,15 +8,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/main_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/main_icon_round"
+        android:roundIcon="@mipmap/main_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity" />
         <activity android:name=".ActivityCodeCommon" />
         <activity android:name=".IntroActivity" />
-        <activity android:name=".VowelConsonantsSpaces" />
-        <activity android:name=".Tables" />
-        <activity android:name=".SumOfDigits" />
+        <activity
+            android:name=".VowelConsonantsSpaces"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".Tables"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".SumOfDigits"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,20 +30,48 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShortestWord" />
-        <activity android:name=".PrimeOrComposite" />
-        <activity android:name=".PigLatin" />
-        <activity android:name=".PerfectNumber" />
-        <activity android:name=".Palindrome" />
-        <activity android:name=".Niven" />
-        <activity android:name=".LongestWord" />
-        <activity android:name=".FindFactorsOfNumber" />
-        <activity android:name=".FindFactorialOfNumber" />
-        <activity android:name=".EachWordNewLine" />
-        <activity android:name=".CitySTDCode" />
-        <activity android:name=".Automorphic" />
-        <activity android:name=".Anagram" />
-        <activity android:name=".Abbreviate" />
+        <activity
+            android:name=".ShortestWord"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".PrimeOrComposite"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".PigLatin"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".PerfectNumber"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".Palindrome"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".Niven"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".LongestWord"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".FindFactorsOfNumber"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".FindFactorialOfNumber"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".EachWordNewLine"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".CitySTDCode"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".Automorphic"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".Anagram"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+        <activity
+            android:name=".Abbreviate"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

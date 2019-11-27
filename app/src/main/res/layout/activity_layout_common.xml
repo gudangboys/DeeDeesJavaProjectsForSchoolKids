@@ -103,7 +103,6 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp"/>
 
-
     </RelativeLayout>
 
 </RelativeLayout>

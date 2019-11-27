@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -20,11 +20,11 @@ import java.util.ArrayList;
 public class CitySTDCode extends AppCompatActivity {
     private EditText editTextUserAddCity, editTextUserAddSTD, editTextSearchCity;
     private Button btnAddData, btnSearchCity, btnResetCitySTD, btnListAllCities, btnResetListCity,
-    btnGetCode;
+            btnGetCode;
     private TextView textViewResultCitySTD, textViewCityListAll;
     private String codeCitySTD;
     ArrayList<String> city = new ArrayList<>();
-    ArrayList<String> stdCode = new ArrayList<>();
+    ArrayList<Integer> stdCode = new ArrayList<>();
     //String city[] = new String[n];
     //int stdCode[] = new int[n];
 
@@ -37,14 +37,17 @@ public class CitySTDCode extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
 
         btnAddData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextUserAddCity.getText().toString().isEmpty() ||
-                        editTextUserAddSTD.getText().toString().isEmpty()){
-                    Toast.makeText(CitySTDCode.this, "Enter All Details", Toast.LENGTH_SHORT).show();
-                    editTextUserAddCity.requestFocus();
+                        editTextUserAddSTD.getText().toString().isEmpty()) {
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_all_fields), Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    toast.show();
 
                 } else {
                     addCity();
@@ -62,7 +65,6 @@ public class CitySTDCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 searchCity();
-
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
@@ -103,43 +105,44 @@ public class CitySTDCode extends AppCompatActivity {
             }
         });
 
+    }
 
+    private void addCity() {
+        String userInputCity = editTextUserAddCity.getText().toString().trim();
+        int userInputSTD = Integer.parseInt(editTextUserAddSTD.getText().toString().trim());
 
+        /*for (int j = 0; j < city.size(); j++) {
+            if (userInputCity.equalsIgnoreCase(city.get(j))) {
+                textViewResultCitySTD.setVisibility(View.VISIBLE);
+                textViewResultCitySTD.setText(getResources().getString(R.string.data_already_exists));
+                textViewResultCitySTD.setTextColor(getResources().getColor(R.color.colorGreen));
+            } else {
 
+         */
+        city.add(userInputCity);
+        stdCode.add(userInputSTD);
 
     }
 
-    private void addCity(){
-        city.add(editTextUserAddCity.getText().toString());
-        stdCode.add(editTextUserAddSTD.getText().toString());
 
-        //int n = 0;
-        //String userAddCity = editTextUserAddCity.getText().toString();
-        //int userAddSTD = Integer.parseInt(editTextUserAddSTD.getText().toString());
+    //int n = 0;
+    //String userAddCity = editTextUserAddCity.getText().toString();
+    //int userAddSTD = Integer.parseInt(editTextUserAddSTD.getText().toString());
 
-        //for (int i = 0; i < n; i++){
-        //    city[i] = userAddCity;
-        //    stdCode[i] = userAddSTD;
-        //}
-    }
+    //for (int i = 0; i < n; i++){
+    //    city[i] = userAddCity;
+    //    stdCode[i] = userAddSTD;
+    //}
 
 
-    private void searchCity(){
-        String userSearchCity = editTextSearchCity.getText().toString();
-
+    private void searchCity() {
+        String userSearchCity = editTextSearchCity.getText().toString().trim();
         if (userSearchCity.isEmpty()) {
-
-            Context context = getApplicationContext();
-            LayoutInflater inflater = getLayoutInflater();
-            View toastRoot = inflater.inflate(R.layout.toast_layout_blue, null);
-            Toast toast = new Toast(context);
-            toast.setView(toastRoot);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
-                    0, 0);
-            toast.setDuration(Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
+            View view = toast.getView();
+            view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
             toast.show();
         } else {
-
             for (int j = 0; j < city.size(); j++) {
                 if (userSearchCity.equalsIgnoreCase(city.get(j))) {
                     textViewResultCitySTD.setVisibility(View.VISIBLE);
@@ -155,20 +158,32 @@ public class CitySTDCode extends AppCompatActivity {
 
     }
 
-    private void listAllCity(){
+    private void listAllCity() {
+
+        /*
+
+        if (city == null){
+            Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.add_data_first),Toast.LENGTH_SHORT);
+            View view = toast.getView();
+            view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
+            toast.show();
+
+        } else {
+
+         */
         StringBuilder builder = new StringBuilder();
         for (String cities : city) {
             builder.append(cities + "\n");
         }
 
+        textViewCityListAll.setMovementMethod(new ScrollingMovementMethod());
         textViewCityListAll.setText(builder.toString());
+
+
     }
 
 
-
-
-
-    private void initViews(){
+    private void initViews() {
         editTextUserAddCity = findViewById(R.id.editTextUserAddCitySTDCode);
         editTextUserAddSTD = findViewById(R.id.editTextUserAddSTD_CitySTDCode);
         editTextSearchCity = findViewById(R.id.editTextSearchCity);
@@ -184,7 +199,7 @@ public class CitySTDCode extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 super.onBackPressed();
                 break;

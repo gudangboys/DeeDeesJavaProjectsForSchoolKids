@@ -34,6 +34,7 @@ public class Anagram extends AppCompatActivity {
         initViews();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
 
         btnCalculateAnagram.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,11 +43,10 @@ public class Anagram extends AppCompatActivity {
                         editTextEnterStringAnagramWord2.getText().toString().isEmpty()) {
                     Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
                     toast.show();
                 } else {
                     getAnagram();
-                    //btnCalculateAnagram.setEnabled(false);
                     textViewResultAnagram.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -60,8 +60,9 @@ public class Anagram extends AppCompatActivity {
                 editTextEnterStringAnagramWord1.getText().clear();
                 editTextEnterStringAnagramWord2.getText().clear();
                 textViewResultAnagram.setText("");
-                //btnCalculateAnagram.setEnabled(true);
                 textViewResultAnagram.setTextColor(getColor(R.color.colorBlack));
+                editTextEnterStringAnagramWord1.requestFocus();
+                textViewResultAnagram.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -71,7 +72,7 @@ public class Anagram extends AppCompatActivity {
                 if (editTextWordEnteredAnagramGame.getText().toString().isEmpty()) {
                     Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
+                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
                     toast.show();
                 } else {
                     validate();
@@ -87,7 +88,6 @@ public class Anagram extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newGame();
-                //btnValidateAnagramGame.setEnabled(true);
             }
         });
 
@@ -105,11 +105,11 @@ public class Anagram extends AppCompatActivity {
     }
 
     private void getAnagram(){
-        String word1 = "", word2 = "";
-        int count = 0, no_count = 0;
+        String word1, word2;
+        int found, not_found = 0;
 
-        word1 = editTextEnterStringAnagramWord1.getText().toString();
-        word2 = editTextEnterStringAnagramWord2.getText().toString();
+        word1 = editTextEnterStringAnagramWord1.getText().toString().trim();
+        word2 = editTextEnterStringAnagramWord2.getText().toString().trim();
 
         int len_word1 = word1.length();
         int len_word2 = word2.length();
@@ -119,69 +119,41 @@ public class Anagram extends AppCompatActivity {
             editTextEnterStringAnagramWord2.getText().clear();
             textViewResultAnagram.setText("");
             textViewResultAnagram.setTextColor(getColor(R.color.colorBlack));
-            Context context = getApplicationContext();
-            LayoutInflater inflater = getLayoutInflater();
-            View toastRoot = inflater.inflate(R.layout.toast_layout_red, null);
-            Toast toast = new Toast(context);
-            toast.setView(toastRoot);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-                    0, 0);
-            toast.setDuration(Toast.LENGTH_SHORT);
+            Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.retry),Toast.LENGTH_SHORT);
+            View view = toast.getView();
+            view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
             toast.show();
         }
 
         if (len_word1 == len_word2){
 
-            int length = len_word1;
+            int len = len_word1;
 
-            for (int i = 0; i < length; i++) {
-                count = 0;
+            for (int i = 0; i < len; i++) {
+                found = 0;
 
-                for (int j = 0; j < length; j++) {
+                for (int j = 0; j < len; j++) {
 
                     if (word1.charAt(i) == word2.charAt(j)) {
-                        count = 1;
+                        found = 1;
                         break;
                     }
                 }
 
-                if (count == 0) {
-                    no_count = 1;
+                if (found == 0) {
+                    not_found = 1;
                     break;
                 }
             }
 
-            if (no_count == 1) {
+            if (not_found == 1) {
 
                 textViewResultAnagram.setText("They are not Anagrams");
                 textViewResultAnagram.setTextColor(getColor(R.color.colorRed));
-                //Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.retry),Toast.LENGTH_SHORT);
-                //View view = toast.getView();
-                //view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
-                //toast.show();
-
-                Context context = getApplicationContext();
-                LayoutInflater inflater = getLayoutInflater();
-                View toastRoot = inflater.inflate(R.layout.toast_layout_red, null);
-                Toast toast = new Toast(context);
-                toast.setView(toastRoot);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-                        0, 0);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.show();
 
             } else {
                 textViewResultAnagram.setText("They are Anagrams");
                 textViewResultAnagram.setTextColor(getColor(R.color.colorGreen));
-                Context context = getApplicationContext();
-                LayoutInflater inflater = getLayoutInflater();
-                View toastRoot = inflater.inflate(R.layout.toast_layout_green, null);
-                Toast toast = new Toast(context);
-                toast.setView(toastRoot);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,
-                        0, 0);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.show();
             }
         }
     }
@@ -204,11 +176,13 @@ public class Anagram extends AppCompatActivity {
     }
 
     private void validate(){
-        String userWord = editTextWordEnteredAnagramGame.getText().toString();
+        String userWord = editTextWordEnteredAnagramGame.getText().toString().trim();
 
         if (wordToFind.equalsIgnoreCase(userWord)) {
             editTextWordEnteredAnagramGame.setTextColor(getColor(R.color.colorGreen));
-            Context context = getApplicationContext();
+
+            //CUSTOM TOAST
+            /*Context context = getApplicationContext();
             LayoutInflater inflater = getLayoutInflater();
             View toastRoot = inflater.inflate(R.layout.toast_layout_anagramgame, null);
             Toast toast = new Toast(context);
@@ -217,16 +191,17 @@ public class Anagram extends AppCompatActivity {
                     0, 0);
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.show();
+             */
+
+            Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.congrats_anagram),Toast.LENGTH_SHORT);
+            View view = toast.getView();
+            view.getBackground().setColorFilter(getResources().getColor(R.color.colorGreen), PorterDuff.Mode.SRC_IN);
+            toast.show();
             newGame();
         } else {
-            Context context = getApplicationContext();
-            LayoutInflater inflater = getLayoutInflater();
-            View toastRoot = inflater.inflate(R.layout.toast_layout_red, null);
-            Toast toast = new Toast(context);
-            toast.setView(toastRoot);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
-                    0, 0);
-            toast.setDuration(Toast.LENGTH_SHORT);
+            Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.retry),Toast.LENGTH_SHORT);
+            View view = toast.getView();
+            view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
             toast.show();
             editTextWordEnteredAnagramGame.setTextColor(getColor(R.color.colorRed));
         }
