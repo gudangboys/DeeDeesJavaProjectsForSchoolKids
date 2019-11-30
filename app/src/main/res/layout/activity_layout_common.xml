@@ -37,7 +37,7 @@
             android:padding="10dp"/>
 
         <Button
-            android:id="@+id/btn_caculate"
+            android:id="@+id/btn_calculate"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/go"
@@ -60,7 +60,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="100dp"
-            android:layout_below="@id/btn_caculate"
+            android:layout_below="@id/btn_calculate"
             android:textColor="@android:color/black"
             android:background="@drawable/border_black_square"
             android:visibility="invisible"

@@ -1,6 +1,7 @@
 package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CitySTDCode extends AppCompatActivity {
     private EditText editTextUserAddCity, editTextUserAddSTD, editTextSearchCity;
@@ -36,8 +38,8 @@ public class CitySTDCode extends AppCompatActivity {
 
         initViews();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
 
         btnAddData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +58,7 @@ public class CitySTDCode extends AppCompatActivity {
                     editTextUserAddCity.requestFocus();
 
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -66,7 +68,7 @@ public class CitySTDCode extends AppCompatActivity {
             public void onClick(View v) {
                 searchCity();
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
 

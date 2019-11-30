@@ -1,6 +1,7 @@
 package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class Abbreviate extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
@@ -30,8 +33,8 @@ public class Abbreviate extends AppCompatActivity {
 
         initViews();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
 
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
 
@@ -66,7 +69,7 @@ public class Abbreviate extends AppCompatActivity {
                 } else {
                     getAbbreviation();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -95,13 +98,13 @@ public class Abbreviate extends AppCompatActivity {
     private void getAbbreviation(){
         textViewResult.setVisibility(View.VISIBLE);
         String userSentence = editTextUserInput.getText().toString();
-        String word = "", word1 = "";
+        String word= "", word1 = "";
         userSentence = userSentence + " ";
         int length = userSentence.length();
 
         for (int i = 0; i < length; i++){
             char ch = userSentence.charAt(i);
-            word = word + ch;
+            word +=  ch;
 
             if (ch == ' ') {
                 word = word.trim();
@@ -115,7 +118,7 @@ public class Abbreviate extends AppCompatActivity {
 
     private void initViews(){
         editTextUserInput = findViewById(R.id.editTextUserInput);
-        btnCalculate = findViewById(R.id.btn_caculate);
+        btnCalculate = findViewById(R.id.btn_calculate);
         btnReset = findViewById(R.id.btnReset);
         textViewResult = findViewById(R.id.textView_result);
         textViewLabel = findViewById(R.id.textView_label);

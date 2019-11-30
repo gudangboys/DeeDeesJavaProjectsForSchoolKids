@@ -1,6 +1,7 @@
 package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class VowelConsonantsSpaces extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
@@ -28,9 +31,9 @@ public class VowelConsonantsSpaces extends AppCompatActivity {
 
         initViews();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
 
         Intent intent = getIntent();
@@ -52,7 +55,7 @@ public class VowelConsonantsSpaces extends AppCompatActivity {
                     //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -107,7 +110,7 @@ public class VowelConsonantsSpaces extends AppCompatActivity {
 
     private void initViews(){
         editTextUserInput = findViewById(R.id.editTextUserInput);
-        btnCalculate = findViewById(R.id.btn_caculate);
+        btnCalculate = findViewById(R.id.btn_calculate);
         btnReset = findViewById(R.id.btnReset);
         textViewResult = findViewById(R.id.textView_result);
         textViewLabel = findViewById(R.id.textView_label);

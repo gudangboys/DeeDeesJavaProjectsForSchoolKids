@@ -40,9 +40,9 @@
     <string name="congrats_anagram">Congratulations! You found the Word!</string>
     <string name="retry">Retry!</string>
     <string name="input_something">Input Something First!</string>
-    <string name="congrats">Congratulations!</string>
+
     <string name="input_all_fields">Input All Fields</string>
-    <string name="add_data_first">Add Data First!</string>
+
 
     <string name="about_text">Hello there! Welcome to my app DeeDee\'s Java Projects for Students
         and Beginners version 1.0!\n\nIt will help if you have a basic knowledge of Java and are
@@ -76,7 +76,7 @@
             and therefore, I acknowledge in good faith that, the content here meets the legal requirements
             for fair use or fair dealing under applicable copyright laws.</string>
     <string name="list_cities">List Cities</string>
-    <string name="data_already_exists">Data already exists</string>
+    <string name="deedees_logo">DeeDees Logo</string>
 
 
 </resources>

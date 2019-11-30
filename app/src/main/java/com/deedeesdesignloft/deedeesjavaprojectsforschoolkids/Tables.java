@@ -1,6 +1,7 @@
 package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class Tables extends AppCompatActivity {
-    private EditText editTextEnterNumberTables, editTextmultiplyUpto;
+    private EditText editTextEnterNumberTables, editTextMultiplyUpto;
     private Button btnListTables, btnResetTables, btnGetCode;
     private TextView textViewResultTables;
     private String codeTables;
@@ -28,15 +31,15 @@ public class Tables extends AppCompatActivity {
 
         initViews();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
 
         btnListTables.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextEnterNumberTables.getText().toString().isEmpty() ||
-                editTextmultiplyUpto.getText().toString().isEmpty()) {
+                editTextMultiplyUpto.getText().toString().isEmpty()) {
                     editTextEnterNumberTables.requestFocus();
                     Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
                     View view = toast.getView();
@@ -47,7 +50,7 @@ public class Tables extends AppCompatActivity {
                     showTables();
                     //btnListTables.setEnabled(false);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -56,7 +59,7 @@ public class Tables extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editTextEnterNumberTables.getText().clear();
-                editTextmultiplyUpto.getText().clear();
+                editTextMultiplyUpto.getText().clear();
                 textViewResultTables.setText("");
                 textViewResultTables.setVisibility(View.INVISIBLE);
                 //btnListTables.setEnabled(true);
@@ -76,7 +79,7 @@ public class Tables extends AppCompatActivity {
 
     private void showTables(){
         int userNumberTables = Integer.parseInt(editTextEnterNumberTables.getText().toString());
-        int userMultiplyUpto = Integer.parseInt(editTextmultiplyUpto.getText().toString());
+        int userMultiplyUpto = Integer.parseInt(editTextMultiplyUpto.getText().toString());
         textViewResultTables.setText("Here are the tables for " + userNumberTables + " for you multiplied " +
                  userMultiplyUpto + " times" + "\n");
 
@@ -97,7 +100,7 @@ public class Tables extends AppCompatActivity {
 
     private void initViews(){
         editTextEnterNumberTables = findViewById(R.id.editTextEnterNumber_Tables);
-        editTextmultiplyUpto = findViewById(R.id.editTextEnterNumber_MultiplyUpto);
+        editTextMultiplyUpto = findViewById(R.id.editTextEnterNumber_MultiplyUpto);
         btnListTables = findViewById(R.id.btnListTables);
         btnResetTables = findViewById(R.id.btnResetTables);
         textViewResultTables = findViewById(R.id.textView_result_Tables);

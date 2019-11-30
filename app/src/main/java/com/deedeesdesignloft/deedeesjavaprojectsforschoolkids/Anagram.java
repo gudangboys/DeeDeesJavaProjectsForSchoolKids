@@ -1,6 +1,7 @@
 package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 public class Anagram extends AppCompatActivity {
     private EditText editTextEnterStringAnagramWord1, editTextEnterStringAnagramWord2,
@@ -33,8 +36,8 @@ public class Anagram extends AppCompatActivity {
 
         initViews();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.main_actionbar));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
 
         btnCalculateAnagram.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +52,7 @@ public class Anagram extends AppCompatActivity {
                     getAnagram();
                     textViewResultAnagram.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -79,7 +82,7 @@ public class Anagram extends AppCompatActivity {
                     //btnValidateAnagramGame.setEnabled(false);
                     textViewWordAnagramGame.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });
@@ -164,7 +167,7 @@ public class Anagram extends AppCompatActivity {
     private void initViews(){
         editTextEnterStringAnagramWord1 = findViewById(R.id.editTextEnterString_Anagram_word1);
         editTextEnterStringAnagramWord2 = findViewById(R.id.editTextEnterString_Anagram_word2);
-        btnCalculateAnagram = findViewById(R.id.btn_caculateAnagram);
+        btnCalculateAnagram = findViewById(R.id.btn_calculateAnagram);
         btnResetAnagram = findViewById(R.id.btnResetAnagram);
         textViewResultAnagram = findViewById(R.id.textView_result_Anagram);
 

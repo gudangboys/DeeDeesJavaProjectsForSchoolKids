@@ -76,7 +76,7 @@
                     android:gravity="center"/>
 
                 <Button
-                    android:id="@+id/btn_caculateAnagram"
+                    android:id="@+id/btn_calculateAnagram"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:text="@string/go"
@@ -127,14 +127,14 @@
         android:layout_weight="1">
 
             <RelativeLayout
-                android:id="@+id/relLayout_botton_anagram"
+                android:id="@+id/relLayout_bottom_anagram"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/border_black"
                 android:layout_margin="4dp">
 
                 <TextView
-                    android:id="@+id/textViewLable_AnagramGame"
+                    android:id="@+id/textViewLabel_AnagramGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/anagram_game"
@@ -151,7 +151,7 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@id/textViewLable_AnagramGame"
+                    android:layout_below="@id/textViewLabel_AnagramGame"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/border_black_square"
                     android:visibility="invisible"

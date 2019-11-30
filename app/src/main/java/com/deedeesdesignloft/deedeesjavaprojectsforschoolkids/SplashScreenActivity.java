@@ -9,8 +9,9 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import java.util.Objects;
+
 public class SplashScreenActivity extends AppCompatActivity {
-    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +23,14 @@ public class SplashScreenActivity extends AppCompatActivity {
         //setContentView to be after Full Screen request
         setContentView(R.layout.activity_splash_screen);
 
-        webView = new WebView(this);
+        WebView webView = new WebView(this);
         webView.loadUrl("file:///android_asset/school_project_animation_yellow.gif");
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         setContentView(webView);
 
 
         //Hide actionbar - these steps will display only your logo without the actionbar
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         SplashLauncher splashLauncher = new SplashLauncher();
         splashLauncher.start();
@@ -38,10 +39,10 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
     private class SplashLauncher extends Thread {
-        private int SLEEP_TIMER = 5;
 
         public void run() {
             try {
+                int SLEEP_TIMER = 5;
                 sleep(1000 * SLEEP_TIMER);
             } catch (InterruptedException e) {
                 e.printStackTrace();
