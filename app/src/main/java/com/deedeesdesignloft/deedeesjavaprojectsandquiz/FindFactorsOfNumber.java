@@ -1,13 +1,14 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,13 +17,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class SumOfDigits extends AppCompatActivity {
+public class FindFactorsOfNumber extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
-    private String codeSumOfDigits;
+    private String codeFindFactors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,29 +35,31 @@ public class SumOfDigits extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
-
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
         editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("sumOfDigits")){
-            textViewLabel.setText("Get the sum of the input number");
+        if (intent.hasExtra("findFactors")){
+            textViewLabel.setText("Find the Factors of a Number");
         } else {textViewLabel.setText("Error: 404");}
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
-                    sumOfDigits();
-                    //btnCalculate.setEnabled(false);
-                    textViewResult.setVisibility(View.VISIBLE);
+                    findFactors();
+
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -67,34 +72,48 @@ public class SumOfDigits extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                //btnCalculate.setEnabled(true);
+                textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+
             }
         });
 
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCode = new Intent(SumOfDigits.this, ActivityCodeCommon.class);
-                intentCode.putExtra("codeSumOfDigits", codeSumOfDigits);
+                Intent intentCode = new Intent(FindFactorsOfNumber.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeFindFactors", codeFindFactors);
                 startActivity(intentCode);
+
             }
         });
+
+
     }
 
-    private void sumOfDigits(){
-        int userNumberSumOfDigits = Integer.parseInt(editTextUserInput.getText().toString());
-        int result;
-        int totalSum = 0;
 
 
-        while (userNumberSumOfDigits > 0) {
-            result = userNumberSumOfDigits % 10;
-            totalSum = totalSum + result;
-            userNumberSumOfDigits = userNumberSumOfDigits/10;
+    private void findFactors(){
+        List<Integer> factors = new ArrayList<>();
+        int userNumberFindFactor = Integer.valueOf(editTextUserInput.getText().toString());
+        textViewResult.setText("The Factors of " + userNumberFindFactor + " are:" + "\n" + "\n");
+        textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGreen));
 
+        for (int i = 1; i <= userNumberFindFactor; i++) {
+
+            if (userNumberFindFactor%i == 0) {
+                factors.add(i);
+            }
         }
 
-        textViewResult.setText("Sum of the digits of your number is: " + "\n" + "\n" + totalSum);
+        StringBuilder builder = new StringBuilder();
+        for (int factorsResult : factors) {
+            builder.append(factorsResult).append("\n");
+        }
+
+        textViewResult.append(builder.toString());
+        textViewResult.setVisibility(View.VISIBLE);
+
+
     }
 
     private void initViews(){
@@ -118,4 +137,5 @@ public class SumOfDigits extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
 }

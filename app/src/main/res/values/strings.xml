@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">DeeDees Java Projects</string>
+    <string name="app_name"><font size="16">DeeDee\'s Java Projects and Q&amp;A</font></string>
+    <string name="projects_label"><font size="15">DeeDee\'s Java Projects for Beginners</font></string>
+    <string name="qna_label">DeeDee\'s Java Q&amp;A</string>
+
+
+
+
+
     <string name="check_if_your_inputs_are_anagrams">Check if your inputs are Anagrams</string>
     <string name="enter_your_string_here">Enter Your String Here..</string>
     <string name="go">Go</string>
@@ -44,6 +51,7 @@
     <string name="input_all_fields">Input All Fields</string>
 
 
+
     <string name="about_text">Hello there! Welcome to my app DeeDee\'s Java Projects for Students
         and Beginners version 1.0!\n\nIt will help if you have a basic knowledge of Java and are
         already familiar with basic coding to enjoy the app to the fullest.\n\nMany a times I have
@@ -61,10 +69,11 @@
         resources on the internet is stackoverflow.com\n\nI have included the simple Java code of
         the projects for your ready reference and clear understanding of the concept and make it
         simpler for you, but remember, your code need not be the same and the pleasure of watching
-        your own code do its job is priceless!\n\nThis app will need to connect to the internet to
+        your own code do its job is priceless!\n\nAlso see if you can find any errors in the code
+        in just a glance!\n\nThis app will need to connect to the internet to
         display the Java code solutions as storing them locally would have increased the size of
         the app.\n\nThe code used in the app may have added features, you are encouraged to add the
-    same in your code on your own.\n\n\n<b>Disclaimer</b>\n\nWhile all the information in this app is presented with good
+    same in your code on your own.\n\n\n<font size="12"><b>Disclaimer</b>\n\nWhile all the information in this app is presented with good
             intentions and is accurate and true to the best of the developer\'s knowledge, is referential
             at best and does not substitute for absolute or expert knowledge and is only intended for
         education purposes and the users are encouraged to research further on the relevant
@@ -74,9 +83,13 @@
         coded by the author/developer.\nWhile all images are copyright to their
             respective owners, they are used herein specifically for education and reference purpose,
             and therefore, I acknowledge in good faith that, the content here meets the legal requirements
-            for fair use or fair dealing under applicable copyright laws.</string>
+            for fair use or fair dealing under applicable copyright laws.</font></string>
     <string name="list_cities">List Cities</string>
     <string name="deedees_logo">DeeDees Logo</string>
+    <string name="attempt_answer_first">*** Attempt the Answer before clicking on Button below ***</string>
+    <string name="forward_slash">/</string>
+    <string name="tts_click_on_answer_button">Click on the Answer Button to hear the answer, but first, attempt the answer on your own!</string>
+    <string name="feature_not_supported">Feature not Supported on your Device</string>
 
 
 </resources>

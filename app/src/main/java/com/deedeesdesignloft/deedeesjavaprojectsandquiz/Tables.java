@@ -1,11 +1,11 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
@@ -33,7 +33,7 @@ public class Tables extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         btnListTables.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,9 +41,11 @@ public class Tables extends AppCompatActivity {
                 if (editTextEnterNumberTables.getText().toString().isEmpty() ||
                 editTextMultiplyUpto.getText().toString().isEmpty()) {
                     editTextEnterNumberTables.requestFocus();
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
                     textViewResultTables.setVisibility(View.VISIBLE);

@@ -1,11 +1,11 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -32,7 +32,7 @@ public class Automorphic extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -46,9 +46,11 @@ public class Automorphic extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
                     getAutomorphic();
@@ -65,7 +67,7 @@ public class Automorphic extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
+                textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 //btnCalculate.setEnabled(true);
             }
         });
@@ -93,10 +95,10 @@ public class Automorphic extends AppCompatActivity {
         int end = sq % (int) Math.pow(10, count);
         if (userAutomorphic == end) {
             textViewResult.setText(userAutomorphic + " is an Automorphic Number");
-            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
+            textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGreen));
         } else {
             textViewResult.setText(userAutomorphic + " is not an Automorphic Number");
-            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
+            textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorRed));
         }
 
     }

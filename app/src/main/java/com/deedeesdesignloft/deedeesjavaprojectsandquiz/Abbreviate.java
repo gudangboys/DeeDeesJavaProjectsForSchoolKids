@@ -1,13 +1,13 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,11 +18,11 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class Niven extends AppCompatActivity {
+public class Abbreviate extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
-    private String codeNiven;
+    private String codeAbbreviate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +32,42 @@ public class Niven extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
-        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        textViewResult.setMovementMethod(new ScrollingMovementMethod());
+
+
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("niven")){
-            textViewLabel.setText("Check if your number is a Niven");
+        if (intent.hasExtra("abbreviate")){
+            textViewLabel.setText("Abbreviate your Input to the first character of each Word/Number");
         } else {textViewLabel.setText("Error: 404");}
+
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    //CUSTOM TOAST
+                    //Context context = getApplicationContext();
+                    //LayoutInflater inflater = getLayoutInflater();
+                    //View toastRoot = inflater.inflate(R.layout.toast_layout_blue, null);
+                    //Toast toast = new Toast(context);
+                    //toast.setView(toastRoot);
+                    //toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM,
+                    //        0, 0);
+                    //toast.setDuration(Toast.LENGTH_SHORT);
+                    //toast.show();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
-                    getNiven();
-                    //btnCalculate.setEnabled(false);
-                    textViewResult.setVisibility(View.VISIBLE);
+                    getAbbreviation();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -66,39 +80,40 @@ public class Niven extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                //btnCalculate.setEnabled(true);
             }
         });
 
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCode = new Intent(Niven.this, ActivityCodeCommon.class);
-                intentCode.putExtra("codeNiven", codeNiven);
+                Intent intentCode = new Intent(Abbreviate.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeAbbreviate", codeAbbreviate);
                 startActivity(intentCode);
+
             }
         });
 
-
     }
 
-    private void getNiven(){
-        int userNiven = Integer.parseInt(editTextUserInput.getText().toString());
-        int ori = userNiven, sumOfDigits = 0;
+    private void getAbbreviation(){
+        textViewResult.setVisibility(View.VISIBLE);
+        String userSentence = editTextUserInput.getText().toString();
+        String word= "", word1 = "";
+        userSentence = userSentence + " ";
+        int length = userSentence.length();
 
+        for (int i = 0; i < length; i++){
+            char ch = userSentence.charAt(i);
+            word +=  ch;
 
-        while (ori > 0) {
-            int rem = ori % 10;
-            sumOfDigits += rem;
-            ori = ori / 10;
+            if (ch == ' ') {
+                word = word.trim();
+                word1 = word;//.toUpperCase();
+                word = "";
+                char chh = word1.charAt(0);
+                textViewResult.append(chh + "." + "\n");
+            }
         }
-
-        if (userNiven % sumOfDigits == 0){
-            textViewResult.setText(userNiven + " is a Niven number");
-        } else {
-            textViewResult.setText(userNiven + " is a not Niven number");
-        }
-
     }
 
     private void initViews(){
@@ -112,7 +127,7 @@ public class Niven extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case android.R.id.home:
                 super.onBackPressed();
                 break;
@@ -120,6 +135,6 @@ public class Niven extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-
     }
+
 }

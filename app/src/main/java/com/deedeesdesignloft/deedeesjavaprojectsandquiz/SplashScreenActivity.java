@@ -1,4 +1,4 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         WebView webView = new WebView(this);
         webView.loadUrl("file:///android_asset/school_project_animation_yellow.gif");
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
         setContentView(webView);
 
 
@@ -48,7 +48,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Intent mainActivityIntent = new Intent(SplashScreenActivity.this, IntroActivity.class);
+            Intent mainActivityIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
             startActivity(mainActivityIntent);
 
             SplashScreenActivity.this.finish();

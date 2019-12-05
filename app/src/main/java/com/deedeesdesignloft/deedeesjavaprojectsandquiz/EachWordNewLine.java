@@ -1,16 +1,13 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,15 +16,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-public class FindFactorsOfNumber extends AppCompatActivity {
+public class EachWordNewLine extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
-    private String codeFindFactors;
+    private String codeEachWordNewLine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +32,30 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
-        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("findFactors")){
-            textViewLabel.setText("Find the Factors of a Number");
+        if (intent.hasExtra("eachWordNewLine")){
+            textViewLabel.setText("Print Every Word in a New Line");
         } else {textViewLabel.setText("Error: 404");}
+
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
-                    findFactors();
-
+                    getEachWordNewLine();
+                    textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -72,7 +68,7 @@ public class FindFactorsOfNumber extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
+                textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
 
             }
         });
@@ -80,8 +76,8 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCode = new Intent(FindFactorsOfNumber.this, ActivityCodeCommon.class);
-                intentCode.putExtra("codeFindFactors", codeFindFactors);
+                Intent intentCode = new Intent(EachWordNewLine.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeEachWordNewLine", codeEachWordNewLine);
                 startActivity(intentCode);
 
             }
@@ -90,28 +86,27 @@ public class FindFactorsOfNumber extends AppCompatActivity {
 
     }
 
+    private void getEachWordNewLine(){
+        String userEachWordNewLine = editTextUserInput.getText().toString();
 
+        if (!userEachWordNewLine.contains(" ")) {
+            textViewResult.setText("Your input is not a Sentence!");
+            textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorRed));
+        } else {
 
-    private void findFactors(){
-        List<Integer> factors = new ArrayList<>();
-        int userNumberFindFactor = Integer.valueOf(editTextUserInput.getText().toString());
-        textViewResult.setText("The Factors of " + userNumberFindFactor + " are:" + "\n" + "\n");
-        textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
-
-        for (int i = 1; i <= userNumberFindFactor; i++) {
-
-            if (userNumberFindFactor%i == 0) {
-                factors.add(i);
-            }
+            String sentence = userEachWordNewLine.replace(" ", System.lineSeparator());
+            textViewResult.setText("Printed every word in a new line for you:" + "\n" + "\n" + sentence);
+            textViewResult.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGreen));
         }
 
-        StringBuilder builder = new StringBuilder();
-        for (int factorsResult : factors) {
-            builder.append(factorsResult + "\n");
-        }
 
-        textViewResult.append(builder.toString());
-        textViewResult.setVisibility(View.VISIBLE);
+
+        //OR
+
+        //String sentence2 = userEachWordNewLine;
+        //for(String word : userEachWordNewLine.split(" ")){
+        //    textViewResultEachWordNewLine(word);
+        //}
 
 
     }
@@ -137,5 +132,4 @@ public class FindFactorsOfNumber extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
-}
+ }

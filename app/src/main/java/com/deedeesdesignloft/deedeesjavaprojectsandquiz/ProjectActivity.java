@@ -1,4 +1,4 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class ProjectActivity extends AppCompatActivity {
     private Button btnFindFactorialOfNumber, btnFindfactorsOfNumber, btnTables,
             btnPrimeOrComposite, btnPerfectNumber, btnSumOfDigits, btnPalindrome, btnAutomorphic,
             btnNiven, btnVowelConsonants, btnEachWordNewLine, btnPigLatin, btnAnagram, btnAbbreviate,
@@ -24,17 +24,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_project);
 
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         btnFindFactorialOfNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FindFactorialOfNumber.class);
+                Intent intent = new Intent(ProjectActivity.this, FindFactorialOfNumber.class);
                 intent.putExtra("findFactorial", findFactorial);
                 startActivity(intent);
             }
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         btnFindfactorsOfNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FindFactorsOfNumber.class);
+                Intent intent = new Intent(ProjectActivity.this, FindFactorsOfNumber.class);
                 intent.putExtra("findFactors", findFactors);
                 startActivity(intent);
             }
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnTables.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Tables.class);
+                Intent intent = new Intent(ProjectActivity.this, Tables.class);
                 startActivity(intent);
             }
         });
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         btnPrimeOrComposite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PrimeOrComposite.class);
+                Intent intent = new Intent(ProjectActivity.this, PrimeOrComposite.class);
                 intent.putExtra("primeOrComposite", primeOrComposite);
                 startActivity(intent);
             }
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         btnPerfectNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PerfectNumber.class);
+                Intent intent = new Intent(ProjectActivity.this, PerfectNumber.class);
                 intent.putExtra("perfectNumber", perfectNumber);
                 startActivity(intent);
             }
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         btnSumOfDigits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SumOfDigits.class);
+                Intent intent = new Intent(ProjectActivity.this, SumOfDigits.class);
                 intent.putExtra("sumOfDigits", sumOfDigits);
                 startActivity(intent);
             }
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         btnPalindrome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Palindrome.class);
+                Intent intent = new Intent(ProjectActivity.this, Palindrome.class);
                 intent.putExtra("palindrome", palindrome);
                 startActivity(intent);
             }
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         btnAutomorphic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Automorphic.class);
+                Intent intent = new Intent(ProjectActivity.this, Automorphic.class);
                 intent.putExtra("automorphic", automorphic);
                 startActivity(intent);
             }
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         btnNiven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Niven.class);
+                Intent intent = new Intent(ProjectActivity.this, Niven.class);
                 intent.putExtra("niven", niven);
                 startActivity(intent);
             }
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         btnVowelConsonants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, VowelConsonantsSpaces.class);
+                Intent intent = new Intent(ProjectActivity.this, VowelConsonantsSpaces.class);
                 intent.putExtra("vowelConsonantSpaces",vowelConsonantSpaces);
                 startActivity(intent);
             }
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         btnEachWordNewLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EachWordNewLine.class);
+                Intent intent = new Intent(ProjectActivity.this, EachWordNewLine.class);
                 intent.putExtra("eachWordNewLine", eachWordNewLine);
                 startActivity(intent);
             }
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         btnPigLatin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PigLatin.class);
+                Intent intent = new Intent(ProjectActivity.this, PigLatin.class);
                 intent.putExtra("pigLatin", pigLatin);
                 startActivity(intent);
             }
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         btnAnagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Anagram.class);
+                Intent intent = new Intent(ProjectActivity.this, Anagram.class);
                 startActivity(intent);
             }
         });
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         btnAbbreviate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Abbreviate.class);
+                Intent intent = new Intent(ProjectActivity.this, Abbreviate.class);
                 intent.putExtra("abbreviate", abbreviate);
                 startActivity(intent);
             }
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         btnLongestWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LongestWord.class);
+                Intent intent = new Intent(ProjectActivity.this, LongestWord.class);
                 intent.putExtra("longestWord", longestWord);
                 startActivity(intent);
             }
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         btnShortestWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ShortestWord.class);
+                Intent intent = new Intent(ProjectActivity.this, ShortestWord.class);
                 intent.putExtra("shortestWord", shortestWord);
                 startActivity(intent);
             }
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         btnCitySTDCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CitySTDCode.class);
+                Intent intent = new Intent(ProjectActivity.this, CitySTDCode.class);
                 startActivity(intent);
             }
         });

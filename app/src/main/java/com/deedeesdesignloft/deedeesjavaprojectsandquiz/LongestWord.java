@@ -1,13 +1,12 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,11 +17,11 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class Palindrome extends AppCompatActivity {
+public class LongestWord extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
-    private String codePalindrome;
+    private String codeLongestWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,26 +31,26 @@ public class Palindrome extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
-
-        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("palindrome")){
-            textViewLabel.setText("Check if your number is a Palindrome");
+        if (intent.hasExtra("longestWord")){
+            textViewLabel.setText("Find the Longest word");
         } else {textViewLabel.setText("Error: 404");}
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
-                    getPalindrome();
+                    getLongestWord();
                     //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -66,44 +65,50 @@ public class Palindrome extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
+                //btnCalculate.setEnabled(true);
             }
         });
 
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCode = new Intent(Palindrome.this, ActivityCodeCommon.class);
-                intentCode.putExtra("codePalindrome", codePalindrome);
+                Intent intentCode = new Intent(LongestWord.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeLongestWord", codeLongestWord);
                 startActivity(intentCode);
+
             }
         });
     }
 
+    private void getLongestWord(){
+        String userInput = editTextUserInput.getText().toString();
+        String word = "", max = "";
+        int l, p = 0;
+        userInput = " " + userInput + " ";
+        l = userInput.length();
+        char ch;
 
-    private void getPalindrome(){
-        int rev = 0, r, ori;
+        for (int i = 0; i < l; i++) {
+            ch = userInput.charAt(i);
+            word = word + ch;
 
-        int userPalindrome = Integer.parseInt(editTextUserInput.getText().toString());
+            if (ch==' ') {
+                int len = word.length();
 
-        ori = userPalindrome;
+                if (len < p) {
+                    word = "";
 
-        while (userPalindrome != 0) {
-            r = userPalindrome % 10;
-            rev = rev * 10 + r;
-            userPalindrome = userPalindrome/10;
+                } else {
+                    p = len; max = word;
+                    word = " ";
+                }
+            }
         }
 
-        if (ori == rev){
-            textViewResult.setText(ori + " is a Palindrome Number");
-            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
-        } else {
-            textViewResult.setText(ori + " is not a Palindrome Number");
-            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
-        }
-
-
+        textViewResult.setText("\"" + max + "\"" + " is the longest word.");
     }
+
+
 
     private void initViews(){
         editTextUserInput = findViewById(R.id.editTextUserInput);
@@ -126,4 +131,5 @@ public class Palindrome extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
- }
+}
+

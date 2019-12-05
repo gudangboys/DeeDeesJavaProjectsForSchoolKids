@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ProjectOrQnATheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorBlue</item>
+        <item name="colorPrimaryDark">@color/colorBlueBackground</item>
+        <item name="colorAccent">@color/colorBlueBackground</item>
+    </style>
+
+    <style name="MainActivityTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimaryMainActivity</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkMainActivity</item>
+        <item name="colorAccent">@color/colorPrimaryDarkMainActivity</item>
+    </style>
+
+
+<style name="QnAActivityTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="colorPrimary">@color/colorPrimaryQnAActivity</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDarkQnAActivity</item>
+    <item name="colorAccent">@color/colorPrimaryDarkQnAActivity</item>
+
+</style>
 </resources>

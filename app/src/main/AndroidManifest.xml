@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.deedeesdesignloft.deedeesjavaprojectsforschoolkids">
+    package="com.deedeesdesignloft.deedeesjavaprojectsandquiz">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,68 +11,23 @@
         android:roundIcon="@mipmap/main_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".ActivityCodeCommon" />
-        <activity android:name=".IntroActivity" />
-        <activity
-            android:name=".VowelConsonantsSpaces"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity
-            android:name=".Tables"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity
-            android:name=".SumOfDigits"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity android:name=".SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".QandAActivity"
+            android:theme="@style/QnAActivityTheme"
+            android:label="@string/qna_label">
         </activity>
-        <activity
-            android:name=".ShortestWord"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".PrimeOrComposite"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".PigLatin"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".PerfectNumber"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".Palindrome"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".Niven"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".LongestWord"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".FindFactorsOfNumber"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".FindFactorialOfNumber"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".EachWordNewLine"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".CitySTDCode"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".Automorphic"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".Anagram"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity
-            android:name=".Abbreviate"
-            android:windowSoftInputMode="stateVisible|adjustPan"/>
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".ProjectOrQuizActivity"
+            android:theme="@style/ProjectOrQnATheme"
+            android:label="@string/projects_label">
+        </activity>
+
+        <activity android:name=".AboutActivity" />
+
+        <activity android:name=".ActivityCodeCommon" />
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -85,6 +40,88 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".VowelConsonantsSpaces"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Tables"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".SumOfDigits"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ShortestWord"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".PrimeOrComposite"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".PigLatin"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".PerfectNumber"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Palindrome"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Niven"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".LongestWord"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".FindFactorsOfNumber"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".FindFactorialOfNumber"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".EachWordNewLine"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".CitySTDCode"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Automorphic"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Anagram"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity
+            android:name=".Abbreviate"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity android:name=".ProjectActivity"
+            android:label="@string/projects_label">
+
+        </activity>
+
     </application>
 
 </manifest>

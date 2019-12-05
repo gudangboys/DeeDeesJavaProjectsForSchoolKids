@@ -1,206 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fadeScrollbars="false"
-    android:scrollbarThumbVertical="@android:color/black"
-    tools:context=".MainActivity"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorPrimaryDark">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDarkMainActivity"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/java_background2">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="30dp">
+            android:padding="8dp"
+            android:layout_centerInParent="true">
 
-            <Button
-                android:id="@+id/btn_Abbreviate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/abbreviate"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/btnClickToEnter"
+            android:layout_width="173dp"
+            android:layout_height="72dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="48dp"
+            android:layout_marginBottom="120dp"
+            android:background="@drawable/enter_icon" />
 
-            <Button
-                android:id="@+id/btn_Anagram"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Abbreviate"
-                android:text="@string/anagram"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="173dp"
+            android:layout_height="72dp"
+            android:layout_below="@id/btnClickToEnter"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="120dp"
+            android:background="@drawable/about_icon" />
 
-            <Button
-                android:id="@+id/btn_Automorphic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Anagram"
-                android:text="@string/automorphic"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_CitySTDCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Automorphic"
-                android:text="@string/find_the_std_code_of_city"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_EachWordNewLine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_CitySTDCode"
-                android:text="@string/print_each_word_in_a_new_line"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_Factorial"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="@string/find_factorial_of_a_number"
-                android:textSize="18sp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"
-                android:layout_below="@id/btn_EachWordNewLine"/>
-
-            <Button
-                android:id="@+id/btn_Factors"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Factorial"
-                android:text="@string/find_factors_of_a_number"
-                android:layout_marginBottom="12dp"
-                android:textSize="18sp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_LongestWord"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Factors"
-                android:text="@string/find_the_longest_word"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_Niven"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_LongestWord"
-                android:text="@string/niven"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_Palindrome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Niven"
-                android:text="@string/palindrome"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_PerfectNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Palindrome"
-                android:text="@string/perfect_number"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_PigLatin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_PerfectNumber"
-                android:text="@string/convert_to_pig_latin"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_PrimeOrComposite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_PigLatin"
-                android:text="@string/prime_or_composite"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_ShortestWord"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_PrimeOrComposite"
-                android:text="@string/find_the_shortest_word"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_SumOfDigits"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_ShortestWord"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:text="@string/find_sum_of_digits"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/btn_Tables"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_SumOfDigits"
-                android:text="@string/tables"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
-
-            <Button
-                android:id="@+id/btn_VowelConsonant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_Tables"
-                android:text="@string/vowels_consonants_spaces"
-                android:textSize="18sp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/button_border"
-                android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/btnOtherApps"
+            android:layout_width="173dp"
+            android:layout_height="72dp"
+            android:layout_below="@id/btnAbout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="48dp"
+            android:background="@drawable/other_apps_icon" />
 
         </RelativeLayout>
 
-    </ScrollView>
 
+    </RelativeLayout>
+
+</RelativeLayout>

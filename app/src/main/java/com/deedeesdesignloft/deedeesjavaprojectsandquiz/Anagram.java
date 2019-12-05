@@ -1,14 +1,12 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -37,16 +35,18 @@ public class Anagram extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         btnCalculateAnagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextEnterStringAnagramWord1.getText().toString().isEmpty() ||
                         editTextEnterStringAnagramWord2.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
                     getAnagram();
@@ -73,9 +73,11 @@ public class Anagram extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (editTextWordEnteredAnagramGame.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
                     validate();
@@ -122,9 +124,11 @@ public class Anagram extends AppCompatActivity {
             editTextEnterStringAnagramWord2.getText().clear();
             textViewResultAnagram.setText("");
             textViewResultAnagram.setTextColor(getColor(R.color.colorBlack));
-            Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.retry),Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.retry), Toast.LENGTH_SHORT);
             View view = toast.getView();
-            view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
+            TextView toastMessage = view.findViewById(android.R.id.message);
+            toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+            view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_red));
             toast.show();
         }
 
@@ -196,15 +200,19 @@ public class Anagram extends AppCompatActivity {
             toast.show();
              */
 
-            Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.congrats_anagram),Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.congrats_anagram), Toast.LENGTH_SHORT);
             View view = toast.getView();
-            view.getBackground().setColorFilter(getResources().getColor(R.color.colorGreen), PorterDuff.Mode.SRC_IN);
+            TextView toastMessage = view.findViewById(android.R.id.message);
+            toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+            view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_green));
             toast.show();
             newGame();
         } else {
-            Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.retry),Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.retry), Toast.LENGTH_SHORT);
             View view = toast.getView();
-            view.getBackground().setColorFilter(getResources().getColor(R.color.colorRed), PorterDuff.Mode.SRC_IN);
+            TextView toastMessage = view.findViewById(android.R.id.message);
+            toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+            view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_red));
             toast.show();
             editTextWordEnteredAnagramGame.setTextColor(getColor(R.color.colorRed));
         }

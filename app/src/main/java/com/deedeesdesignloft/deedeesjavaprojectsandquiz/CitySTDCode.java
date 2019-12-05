@@ -1,11 +1,11 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
@@ -39,16 +39,19 @@ public class CitySTDCode extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         btnAddData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextUserAddCity.getText().toString().isEmpty() ||
                         editTextUserAddSTD.getText().toString().isEmpty()) {
-                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_all_fields), Toast.LENGTH_SHORT);
+
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
 
                 } else {
@@ -93,7 +96,7 @@ public class CitySTDCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 textViewCityListAll.setText("");
-                textViewResultCitySTD.setTextColor(getResources().getColor(R.color.colorBlack));
+                textViewResultCitySTD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
             }
         });
 
@@ -142,18 +145,20 @@ public class CitySTDCode extends AppCompatActivity {
         if (userSearchCity.isEmpty()) {
             Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
             View view = toast.getView();
-            view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+            TextView toastMessage = view.findViewById(android.R.id.message);
+            toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+            view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
             toast.show();
         } else {
             for (int j = 0; j < city.size(); j++) {
                 if (userSearchCity.equalsIgnoreCase(city.get(j))) {
                     textViewResultCitySTD.setVisibility(View.VISIBLE);
                     textViewResultCitySTD.setText("City: " + userSearchCity + "\n" + "STD: " + stdCode.get(j));
-                    textViewResultCitySTD.setTextColor(getResources().getColor(R.color.colorGreen));
+                    textViewResultCitySTD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorGreen));
                 } else {
                     textViewResultCitySTD.setVisibility(View.VISIBLE);
                     textViewResultCitySTD.setText("City not found!");
-                    textViewResultCitySTD.setTextColor(getResources().getColor(R.color.colorRed));
+                    textViewResultCitySTD.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorRed));
                 }
             }
         }
@@ -175,7 +180,7 @@ public class CitySTDCode extends AppCompatActivity {
          */
         StringBuilder builder = new StringBuilder();
         for (String cities : city) {
-            builder.append(cities + "\n");
+            builder.append(cities).append("\n");
         }
 
         textViewCityListAll.setMovementMethod(new ScrollingMovementMethod());

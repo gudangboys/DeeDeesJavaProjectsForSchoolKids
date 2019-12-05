@@ -8,8 +8,19 @@
     <color name="colorThemeLight">#FAADB0</color>
 
 
+    <color name="colorYellow">#ffff00</color>
     <color name="colorGreen">#2ea70a</color>
     <color name="colorBlack">#000000</color>
     <color name="colorRed">#fd1a04</color>
     <color name="colorBlue">#1A0285</color>
+    <color name="colorBlueBackground">#99b3ff</color>
+
+    <color name="colorPrimaryMainActivity">#4d4d4d</color>
+    <color name="colorPrimaryDarkMainActivity">#cccccc</color>
+
+    <color name="colorPrimaryQnAActivity">#734110</color>
+    <color name="colorPrimaryDarkQnAActivity">#ffffcc</color>
+
+    <color name="colorAnsButton">#009900</color>
+
 </resources>

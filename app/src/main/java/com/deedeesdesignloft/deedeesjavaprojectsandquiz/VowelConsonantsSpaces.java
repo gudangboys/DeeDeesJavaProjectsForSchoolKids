@@ -1,33 +1,28 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
 
-public class FindFactorialOfNumber extends AppCompatActivity {
+public class VowelConsonantsSpaces extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
-    private String codeFindFactorial;
-
+    private String codeVowelsConsonants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,28 +32,29 @@ public class FindFactorialOfNumber extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
 
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
-        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("findFactorial")){
-            textViewLabel.setText("Find the Factorial of a Number");
+        if (intent.hasExtra("vowelConsonantSpaces")){
+            textViewLabel.setText("Get the total Vowels, Consonants, Spaces and Special Characters in your input");
         } else {textViewLabel.setText("Error: 404");}
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editTextUserInput.getText().toString().isEmpty()){
-                    editTextUserInput.requestFocus();
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                if (editTextUserInput.getText().toString().isEmpty()) {
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
-                    findFactorial();
+                    getVowelConsonants();
+                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -72,36 +68,46 @@ public class FindFactorialOfNumber extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
+                //btnCalculate.setEnabled(true);
             }
         });
 
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCode = new Intent(FindFactorialOfNumber.this, ActivityCodeCommon.class);
-                intentCode.putExtra("codeFindFactorial", codeFindFactorial);
+                Intent intentCode = new Intent(VowelConsonantsSpaces.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeVowelsConsonants", codeVowelsConsonants);
                 startActivity(intentCode);
-
             }
         });
 
+
     }
 
+    private void getVowelConsonants(){
+        String userVowelConsonant = editTextUserInput.getText().toString();
+        int vowels = 0, consonants = 0, numbers = 0, spaces = 0, specialChar = 0;
 
+        for (int i = 0; i < userVowelConsonant.length(); i ++){
 
-    private void findFactorial(){
-        int userNumberFindFactorial = Integer.valueOf(editTextUserInput.getText().toString());
-        int factorial = 1;
-        textViewResult.setText("The Factorial of " + userNumberFindFactorial + " is:" + "\n");
-        textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
-
-        for (int i = 1; i <= userNumberFindFactorial; i++){
-            factorial = factorial * i;
+            if (userVowelConsonant.charAt(i) == 'a' || userVowelConsonant.charAt(i) == 'e' ||
+                    userVowelConsonant.charAt(i) == 'i' || userVowelConsonant.charAt(i) == 'o' ||
+                    userVowelConsonant.charAt(i) == 'u') {
+                vowels++;
+            } else if (userVowelConsonant.charAt(i) == ' ') {
+                spaces++;
+            } else if (userVowelConsonant.charAt(i) >= 'a' && userVowelConsonant.charAt(i) <= 'z'){
+                consonants++;
+            } else if(userVowelConsonant.charAt(i) >= '0' && userVowelConsonant.charAt(i) <= '9') {
+                numbers++;
+            } else {
+                specialChar++;
+            }
         }
-        textViewResult.append("\n" + factorial);
 
-
+        textViewResult.setText("Your String has: " + "\n" + "\n" + vowels + " vowels"
+                + "\n" + consonants + " consonants" + "\n" + numbers + " numbers" + "\n" + spaces +
+                " spaces" + "\n" + specialChar + " special characters.");
     }
 
     private void initViews(){
@@ -111,7 +117,6 @@ public class FindFactorialOfNumber extends AppCompatActivity {
         textViewResult = findViewById(R.id.textView_result);
         textViewLabel = findViewById(R.id.textView_label);
         btnGetCode = findViewById(R.id.btnGetCode);
-
     }
 
     @Override

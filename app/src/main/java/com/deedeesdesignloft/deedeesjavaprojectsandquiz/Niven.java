@@ -1,15 +1,13 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -20,11 +18,11 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class EachWordNewLine extends AppCompatActivity {
+public class Niven extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
-    private String codeEachWordNewLine;
+    private String codeNiven;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,27 +32,29 @@ public class EachWordNewLine extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
-        textViewResult.setMovementMethod(new ScrollingMovementMethod());
+        editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("eachWordNewLine")){
-            textViewLabel.setText("Print Every Word in a New Line");
+        if (intent.hasExtra("niven")){
+            textViewLabel.setText("Check if your number is a Niven");
         } else {textViewLabel.setText("Error: 404");}
-
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
-                    getEachWordNewLine();
+                    getNiven();
+                    //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -68,46 +68,38 @@ public class EachWordNewLine extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
-
+                //btnCalculate.setEnabled(true);
             }
         });
 
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCode = new Intent(EachWordNewLine.this, ActivityCodeCommon.class);
-                intentCode.putExtra("codeEachWordNewLine", codeEachWordNewLine);
+                Intent intentCode = new Intent(Niven.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeNiven", codeNiven);
                 startActivity(intentCode);
-
             }
         });
 
 
     }
 
-    private void getEachWordNewLine(){
-        String userEachWordNewLine = editTextUserInput.getText().toString();
+    private void getNiven(){
+        int userNiven = Integer.parseInt(editTextUserInput.getText().toString());
+        int ori = userNiven, sumOfDigits = 0;
 
-        if (!userEachWordNewLine.contains(" ")) {
-            textViewResult.setText("Your input is not a Sentence!");
-            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
-        } else {
 
-            String sentence = userEachWordNewLine.replace(" ", System.lineSeparator());
-            textViewResult.setText("Printed every word in a new line for you:" + "\n" + "\n" + sentence);
-            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
+        while (ori > 0) {
+            int rem = ori % 10;
+            sumOfDigits += rem;
+            ori = ori / 10;
         }
 
-
-
-        //OR
-
-        //String sentence2 = userEachWordNewLine;
-        //for(String word : userEachWordNewLine.split(" ")){
-        //    textViewResultEachWordNewLine(word);
-        //}
-
+        if (userNiven % sumOfDigits == 0){
+            textViewResult.setText(userNiven + " is a Niven number");
+        } else {
+            textViewResult.setText(userNiven + " is a not Niven number");
+        }
 
     }
 
@@ -132,4 +124,4 @@ public class EachWordNewLine extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
- }
+}

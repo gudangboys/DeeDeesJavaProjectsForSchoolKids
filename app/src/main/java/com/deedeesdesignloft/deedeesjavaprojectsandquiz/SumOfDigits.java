@@ -1,11 +1,11 @@
-package com.deedeesdesignloft.deedeesjavaprojectsforschoolkids;
+package com.deedeesdesignloft.deedeesjavaprojectsandquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -18,11 +18,11 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
-public class PerfectNumber extends AppCompatActivity {
+public class SumOfDigits extends AppCompatActivity {
     private EditText editTextUserInput;
     private Button btnCalculate, btnReset, btnGetCode;
     private TextView textViewLabel, textViewResult;
-    private String codePerfectNumber;
+    private String codeSumOfDigits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,27 +32,29 @@ public class PerfectNumber extends AppCompatActivity {
         initViews();
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.main_actionbar, null));
+
+        getSupportActionBar().setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.project_actionbar, null));
 
         editTextUserInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         Intent intent = getIntent();
 
-        if (intent.hasExtra("perfectNumber")){
-            textViewLabel.setText("Check if your number is a Perfect Number");
+        if (intent.hasExtra("sumOfDigits")){
+            textViewLabel.setText("Get the sum of the input number");
         } else {textViewLabel.setText("Error: 404");}
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (editTextUserInput.getText().toString().isEmpty()) {
-                    Toast toast =  Toast.makeText(getApplicationContext(),getResources().getString(R.string.input_something),Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_something), Toast.LENGTH_SHORT);
                     View view = toast.getView();
-                    view.getBackground().setColorFilter(getResources().getColor(R.color.colorBlack), PorterDuff.Mode.SRC_IN);
+                    TextView toastMessage = view.findViewById(android.R.id.message);
+                    toastMessage.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorYellow));
+                    view.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.toast_shape_black));
                     toast.show();
                 } else {
-                    perfectNumber();
+                    sumOfDigits();
                     //btnCalculate.setEnabled(false);
                     textViewResult.setVisibility(View.VISIBLE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -67,38 +69,34 @@ public class PerfectNumber extends AppCompatActivity {
                 editTextUserInput.getText().clear();
                 textViewResult.setText("");
                 textViewResult.setVisibility(View.INVISIBLE);
-                textViewResult.setTextColor(getResources().getColor(R.color.colorBlack));
+                //btnCalculate.setEnabled(true);
             }
         });
 
         btnGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCode = new Intent(PerfectNumber.this, ActivityCodeCommon.class);
-                intentCode.putExtra("codePerfectNumber", codePerfectNumber);
+                Intent intentCode = new Intent(SumOfDigits.this, ActivityCodeCommon.class);
+                intentCode.putExtra("codeSumOfDigits", codeSumOfDigits);
                 startActivity(intentCode);
             }
         });
-
     }
 
-    private void perfectNumber(){
-        int perfectNumberSum = 0;
-        int userPerfectNumber = Integer.parseInt(editTextUserInput.getText().toString());
+    private void sumOfDigits(){
+        int userNumberSumOfDigits = Integer.parseInt(editTextUserInput.getText().toString());
+        int result;
+        int totalSum = 0;
 
-        for (int i = 1; i < userPerfectNumber; i++){
-            if (userPerfectNumber % i == 0){
-                perfectNumberSum = perfectNumberSum + i;
-            }
+
+        while (userNumberSumOfDigits > 0) {
+            result = userNumberSumOfDigits % 10;
+            totalSum = totalSum + result;
+            userNumberSumOfDigits = userNumberSumOfDigits/10;
+
         }
 
-        if (perfectNumberSum == userPerfectNumber){
-            textViewResult.setText(userPerfectNumber + " is a Perfect Number");
-            textViewResult.setTextColor(getResources().getColor(R.color.colorGreen));
-        } else {
-            textViewResult.setText(userPerfectNumber + " is not a Perfect Number");
-            textViewResult.setTextColor(getResources().getColor(R.color.colorRed));
-        }
+        textViewResult.setText("Sum of the digits of your number is: " + "\n" + "\n" + totalSum);
     }
 
     private void initViews(){
@@ -122,4 +120,4 @@ public class PerfectNumber extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
- }
+}
